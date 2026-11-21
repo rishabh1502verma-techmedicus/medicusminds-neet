@@ -1,0 +1,3003 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090D16" />
+  <meta name="referrer" content="no-referrer" />
+  <title>MedicusMinds NEET — Syllabus, Auto-Backlog, Revision & Habit Engine</title>
+
+  <!-- Embedded SVG App Icon & Dynamic Web App Manifest -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%234F46E5'/%3E%3Ctext x='64' y='84' font-family='Inter,Arial,sans-serif' font-size='64' font-weight='800' fill='white' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E" />
+  <link id="pwa-manifest-link" rel="manifest" href="" />
+  <script>
+    (function () {
+      var iconSvg = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%234F46E5'/%3E%3Ctext x='256' y='330' font-family='Inter,Arial,sans-serif' font-size='260' font-weight='800' fill='white' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E";
+      var manifest = {
+        name: "MedicusMinds NEET",
+        short_name: "MedicusMinds",
+        description: "Minimalist NEET Syllabus, Auto-Backlog, Revision & Habit Engine",
+        start_url: "./",
+        display: "standalone",
+        background_color: "#090D16",
+        theme_color: "#090D16",
+        icons: [
+          { src: iconSvg, sizes: "192x192", type: "image/svg+xml", purpose: "any maskable" },
+          { src: iconSvg, sizes: "512x512", type: "image/svg+xml", purpose: "any maskable" }
+        ]
+      };
+      var el = document.getElementById("pwa-manifest-link");
+      if (el) {
+        el.href = "data:application/manifest+json;charset=utf-8," + encodeURIComponent(JSON.stringify(manifest));
+      }
+    })();
+  </script>
+
+  <!-- Google Analytics (GA4) Optional Slot -->
+  <script>
+    window.GA4_MEASUREMENT_ID = "";
+    if (window.GA4_MEASUREMENT_ID && /^G-[A-Z0-9]+$/i.test(window.GA4_MEASUREMENT_ID)) {
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(window.GA4_MEASUREMENT_ID);
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", window.GA4_MEASUREMENT_ID);
+    }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .drawer-transition {
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .dark .glass-card {
+      background-color: rgba(17, 24, 39, 0.85);
+      border-color: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+    .dark .glow-indigo:hover {
+      box-shadow: 0 0 24px -4px rgba(99, 102, 241, 0.28);
+      border-color: rgba(99, 102, 241, 0.45);
+    }
+    .dark .glow-emerald:hover {
+      box-shadow: 0 0 24px -4px rgba(16, 185, 129, 0.28);
+      border-color: rgba(16, 185, 129, 0.45);
+    }
+    .dark .glow-amber:hover {
+      box-shadow: 0 0 24px -4px rgba(245, 158, 11, 0.28);
+      border-color: rgba(245, 158, 11, 0.45);
+    }
+    .dark .glow-violet:hover {
+      box-shadow: 0 0 24px -4px rgba(139, 92, 246, 0.28);
+      border-color: rgba(139, 92, 246, 0.45);
+    }
+  </style>
+</head>
+<body class="bg-[#F8FAFC] text-slate-900 dark:bg-[#090D16] dark:text-[#F8FAFC] min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white transition-colors duration-200">
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-[100] flex flex-col gap-2 pointer-events-none max-w-xs w-full px-4 sm:px-0"></div>
+
+  <!-- Sidebar Backdrop -->
+  <div id="sidebar-backdrop" data-action="close-sidebar" class="fixed inset-0 bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs z-40 hidden"></div>
+
+  <!-- Slide-Over Sidebar Drawer -->
+  <aside id="sidebar-drawer" class="fixed top-0 left-0 bottom-0 w-72 sm:w-80 bg-white dark:bg-[#0D1322] border-r border-slate-200 dark:border-white/10 z-50 transform -translate-x-full drawer-transition flex flex-col justify-between shadow-2xl">
+    <div class="p-5 overflow-y-auto flex-1">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-white/10">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-slate-900 dark:bg-indigo-600 text-white flex items-center justify-center font-extrabold text-sm">M</div>
+          <div>
+            <div class="text-sm font-bold tracking-tight dark:text-white">MedicusMinds</div>
+            <div class="text-[11px] text-slate-500 dark:text-slate-400">NEET Command Center</div>
+          </div>
+        </div>
+        <button type="button" data-action="close-sidebar" aria-label="Close Menu" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">✕</button>
+      </div>
+
+      <!-- Profile Quick Card -->
+      <button type="button" data-action="navigate" data-route="profile" class="mt-4 w-full text-left p-3 rounded-2xl bg-slate-50 dark:bg-[#111827] border border-slate-200/80 dark:border-white/10 hover:border-indigo-500/40 transition-all flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <span id="sidebar-user-avatar" class="w-8 h-8 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 font-bold text-xs flex items-center justify-center shrink-0">G</span>
+          <div class="min-w-0">
+            <div id="sidebar-user-name" class="text-xs font-bold text-slate-900 dark:text-white truncate">Guest Aspirant</div>
+            <div id="sidebar-user-sub" class="text-[10px] text-slate-500 dark:text-slate-400 truncate">Profile, Backup & Sync</div>
+          </div>
+        </div>
+        <span class="text-xs text-slate-400">›</span>
+      </button>
+
+      <!-- Navigation List -->
+      <nav id="sidebar-nav-list" class="mt-4 space-y-1"></nav>
+
+      <!-- Follow Us On Links -->
+      <div class="mt-6 pt-4 border-t border-slate-100 dark:border-white/10">
+        <div class="px-1 mb-2.5 text-[11px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Follow Us On</div>
+        <div id="sidebar-social-links" class="grid grid-cols-1 gap-2"></div>
+      </div>
+    </div>
+
+    <!-- Sidebar Footer: Install App -->
+    <div class="p-4 border-t border-slate-100 dark:border-white/10 bg-slate-50/70 dark:bg-[#0A0F1A]">
+      <button type="button" data-action="install-pwa" class="w-full py-2.5 px-3 rounded-xl text-xs font-semibold bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white transition-colors flex items-center justify-center gap-2">
+        <span>📲</span>
+        <span>Install App (PWA)</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Sticky Header -->
+  <header class="sticky top-0 z-30 bg-[#F8FAFC]/90 dark:bg-[#090D16]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-white/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <button type="button" data-action="open-sidebar" aria-label="Open Menu" class="p-2.5 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+
+        <button type="button" data-action="logo-tap" class="flex items-center gap-2.5 text-left group focus:outline-none select-none" title="MedicusMinds NEET">
+          <div class="w-8 h-8 rounded-xl bg-slate-900 dark:bg-indigo-600 text-white flex items-center justify-center font-extrabold text-sm tracking-tight group-active:scale-95 transition-transform">M</div>
+          <div>
+            <span class="font-bold text-base tracking-tight text-slate-900 dark:text-white block leading-none">MedicusMinds NEET</span>
+            <span class="text-[10px] font-medium text-slate-500 dark:text-slate-400 tracking-wide">@medicusminds_official</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button type="button" data-action="toggle-theme" aria-label="Toggle Theme" class="p-2.5 rounded-xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-xs font-semibold">
+          <span id="theme-icon">☀️</span>
+        </button>
+
+        <button type="button" data-action="navigate" data-route="profile" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-indigo-500/40 transition-all">
+          <span id="header-user-avatar" class="w-6 h-6 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 text-xs font-bold flex items-center justify-center">G</span>
+          <span id="header-user-name" class="text-xs font-semibold text-slate-700 dark:text-slate-200 max-w-[100px] sm:max-w-[150px] truncate">Guest Aspirant</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main id="main-content" class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8"></main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-200/70 dark:border-white/10 py-5 px-4 text-center text-xs text-slate-400 dark:text-slate-500">
+    MedicusMinds NEET • Syllabus, Smart Auto-Backlog, Revision & Habit Engine • @medicusminds_official
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- Modal: Exam Countdown Setup -->
+  <div id="modal-exam-countdown" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs p-4">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl max-w-sm w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-base font-bold">Exam Countdown Setup</h3>
+        <button type="button" data-action="close-modal" data-modal="modal-exam-countdown" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">✕</button>
+      </div>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Set your preparation start date and target exam date to calculate remaining days.</p>
+      <form data-form="exam-countdown" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Target Exam Label</label>
+          <input id="input-exam-label" type="text" maxlength="50" required placeholder="e.g. NEET UG Target" class="w-full px-3.5 py-2.5 rounded-xl text-sm font-semibold bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Prep Start Date</label>
+            <input id="input-prep-start-date" type="date" required class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Target Exam Date</label>
+            <input id="input-target-exam-date" type="date" required class="w-full px-3 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+          </div>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" data-action="close-modal" data-modal="modal-exam-countdown" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">Save Dates</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Edit Daily Question Target -->
+  <div id="modal-daily-target" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs p-4">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl max-w-sm w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-base font-bold">Today's Question Target</h3>
+        <button type="button" data-action="close-modal" data-modal="modal-daily-target" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">✕</button>
+      </div>
+      <form data-form="daily-target" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Daily Target (Questions)</label>
+          <input id="input-daily-target" type="number" min="5" max="1000" required class="w-full px-3.5 py-2.5 rounded-xl text-sm font-bold bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" data-action="close-modal" data-modal="modal-daily-target" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">Save Target</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Custom Subject -->
+  <div id="modal-add-subject" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs p-4">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-bold">Add Custom Subject</h3>
+        <button type="button" data-action="close-modal" data-modal="modal-add-subject" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">✕</button>
+      </div>
+      <form data-form="add-subject" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Subject Name</label>
+          <input id="input-new-subject-name" type="text" maxlength="60" required placeholder="e.g. Botany, Zoology, Mock Revision" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Accent Theme</label>
+          <select id="input-new-subject-color" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="violet">Violet</option>
+            <option value="indigo">Indigo</option>
+            <option value="emerald">Emerald</option>
+            <option value="amber">Amber</option>
+          </select>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" data-action="close-modal" data-modal="modal-add-subject" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">Create Subject</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Custom Chapter -->
+  <div id="modal-add-chapter" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs p-4">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-bold">Add Custom Chapter</h3>
+        <button type="button" data-action="close-modal" data-modal="modal-add-chapter" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">✕</button>
+      </div>
+      <form data-form="add-chapter" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Chapter Title</label>
+          <input id="input-new-chapter-title" type="text" maxlength="120" required placeholder="e.g. Experimental Physics Practice" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Class Section</label>
+          <select id="input-new-chapter-class" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="11">Class 11th</option>
+            <option value="12">Class 12th</option>
+          </select>
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" data-action="close-modal" data-modal="modal-add-chapter" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">Add Chapter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Add Exercise -->
+  <div id="modal-add-exercise" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs p-4">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-bold">Add Practice Exercise</h3>
+        <button type="button" data-action="close-modal" data-modal="modal-add-exercise" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">✕</button>
+      </div>
+      <form data-form="add-exercise" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Exercise Name</label>
+          <input id="input-new-ex-name" type="text" maxlength="60" required placeholder="e.g. Exercise 3 (Assertion-Reason / NCERT Exemplar)" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1.5">Total Questions</label>
+          <input id="input-new-ex-total" type="number" min="1" max="5000" value="40" required class="w-full px-3.5 py-2.5 rounded-xl text-sm font-bold bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        </div>
+        <div class="flex justify-end gap-2 pt-2">
+          <button type="button" data-action="close-modal" data-modal="modal-add-exercise" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">Add Exercise</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Secret Owner Admin PIN / Owner Phone -->
+  <div id="modal-admin-pin" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs p-4">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl max-w-sm w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+          <h3 class="text-base font-bold">Owner Console Access</h3>
+        </div>
+        <button type="button" data-action="close-modal" data-modal="modal-admin-pin" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">✕</button>
+      </div>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Enter your Owner PIN (default: 1234) or configured Owner Phone Number (default: 9999999999).</p>
+      <div id="admin-lockout-banner" class="hidden mb-3 px-3 py-2 rounded-xl bg-rose-50 dark:bg-rose-950/70 border border-rose-200 dark:border-rose-800 text-[11px] font-semibold text-rose-700 dark:text-rose-300"></div>
+      <form data-form="admin-pin" class="space-y-4">
+        <input id="input-admin-pin" type="password" inputmode="numeric" maxlength="16" required autocomplete="off" placeholder="PIN or Owner Phone" class="w-full px-4 py-3 rounded-xl text-center tracking-[0.18em] font-bold text-base bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        <div class="flex justify-end gap-2">
+          <button type="button" data-action="close-modal" data-modal="modal-admin-pin" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white hover:bg-indigo-700">Unlock Console</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: PWA Install Instructions -->
+  <div id="modal-pwa-help" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 dark:bg-black/75 backdrop-blur-xs p-4">
+    <div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl max-w-sm w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-base font-bold">Install MedicusMinds NEET</h3>
+        <button type="button" data-action="close-modal" data-modal="modal-pwa-help" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">✕</button>
+      </div>
+      <div class="space-y-2.5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p><strong>Android (Chrome):</strong> Tap the top-right browser menu (<span class="font-bold">⋮</span>) and choose <span class="font-bold">"Add to Home screen"</span> or <span class="font-bold">"Install app"</span>.</p>
+        <p><strong>iPhone / iPad (Safari):</strong> Tap the <span class="font-bold">Share</span> icon at the bottom and select <span class="font-bold">"Add to Home Screen"</span>.</p>
+      </div>
+      <div class="flex justify-end mt-5">
+        <button type="button" data-action="close-modal" data-modal="modal-pwa-help" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      /* =====================================================================
+       * 1. PHASE 2 PLUG-AND-PLAY CLOUD BRIDGE & SCHEMA CONSTANTS
+       * ===================================================================== */
+      window.CloudBridge = window.CloudBridge || {
+        endpoint: "",
+        apiKey: "",
+        syncProfile: async function () { return { ok: false, reason: "Local mode active" }; }
+      };
+
+      var CURRENT_SCHEMA_VERSION = 1;
+      var PIN_SALT = "MM_NEET_SEC_V1_9981";
+      var PHONE_SALT = "MM_NEET_OWN_V1_4419";
+      var STORAGE_KEY = "medicusminds_neet_state_v1";
+
+      /* =====================================================================
+       * 2. SECURITY & VALIDATION UTILITIES
+       * ===================================================================== */
+      function esc(str) {
+        return String(str == null ? "" : str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#39;")
+          .replace(/`/g, "&#96;");
+      }
+
+      function safeUrl(raw) {
+        if (!raw || typeof raw !== "string") return "";
+        var trimmed = raw.trim();
+        if (!trimmed) return "";
+        try {
+          var parsed = new URL(trimmed, window.location.origin);
+          if (parsed.protocol === "https:" || parsed.protocol === "http:") {
+            return parsed.href;
+          }
+          return "";
+        } catch (e) {
+          return "";
+        }
+      }
+
+      function computeSaltedHash(salt, rawVal) {
+        var input = salt + "::" + String(rawVal || "").trim();
+        var h1 = 0x811c9dc5;
+        var h2 = 0x1b873593;
+        for (var i = 0; i < input.length; i++) {
+          var ch = input.charCodeAt(i);
+          h1 ^= ch;
+          h1 = Math.imul(h1, 0x01000193);
+          h2 ^= (ch + i);
+          h2 = Math.imul(h2, 0x85ebca6b);
+        }
+        return "mmh_" + (h1 >>> 0).toString(16).padStart(8, "0") + (h2 >>> 0).toString(16).padStart(8, "0");
+      }
+
+      function hashPin(rawPin) {
+        return computeSaltedHash(PIN_SALT, rawPin);
+      }
+
+      function normalizePhone(rawPhone) {
+        var digits = String(rawPhone || "").replace(/\D/g, "");
+        if (digits.length === 12 && digits.indexOf("91") === 0) {
+          digits = digits.slice(2);
+        }
+        return digits;
+      }
+
+      function hashOwnerPhone(rawPhone) {
+        var norm = normalizePhone(rawPhone);
+        return norm ? computeSaltedHash(PHONE_SALT, norm) : "";
+      }
+
+      function isOwnerPhoneMatch(candidatePhone, adminCfg) {
+        var norm = normalizePhone(candidatePhone);
+        if (!norm || norm.length !== 10) return false;
+        if (adminCfg && adminCfg.ownerPhoneHash && String(adminCfg.ownerPhoneHash).indexOf("mmh_") === 0) {
+          return hashOwnerPhone(norm) === adminCfg.ownerPhoneHash;
+        }
+        var legacy = normalizePhone(adminCfg && adminCfg.ownerPhone ? adminCfg.ownerPhone : "9999999999");
+        return norm === legacy;
+      }
+
+      function verifyAdminCredential(inputVal, adminCfg) {
+        var clean = String(inputVal || "").trim();
+        if (!clean) return false;
+        if (isOwnerPhoneMatch(clean, adminCfg)) return true;
+        var storedPinHash = adminCfg && adminCfg.pinHash;
+        if (storedPinHash && String(storedPinHash).indexOf("mmh_") === 0) {
+          return hashPin(clean) === storedPinHash;
+        }
+        return clean === String(storedPinHash || "1234");
+      }
+
+      function validateBackupPayload(raw) {
+        if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+        var data = raw.appData && typeof raw.appData === "object" ? raw.appData : raw;
+        if (!data || typeof data !== "object" || Array.isArray(data)) return null;
+        if (!data.progress || typeof data.progress !== "object" || Array.isArray(data.progress)) return null;
+        return data;
+      }
+
+      /* =====================================================================
+       * 3. EXACT PRELOADED SYLLABUS SEQUENCES (PHYSICS 25, CHEM 25, BIO 1-32)
+       * ===================================================================== */
+      var DEFAULT_SUBJECTS = [
+        { id: "physics", name: "Physics", color: "indigo", icon: "⚛️", subtitle: "Class 11 & 12 • 25 Chapters" },
+        { id: "chemistry", name: "Chemistry", color: "emerald", icon: "🧪", subtitle: "Physical, Inorganic & Organic • 25 Chapters" },
+        { id: "biology", name: "Biology", color: "amber", icon: "🧬", subtitle: "Exact 1–32 NCERT Sequence" }
+      ];
+
+      var DEFAULT_CHAPTERS = [
+        // PHYSICS (25 Chapters: Class 11 [1-14], Class 12 [15-25])
+        { id: "phy-1", subjectId: "physics", cls: "11", title: "Basic Maths & Vectors" },
+        { id: "phy-2", subjectId: "physics", cls: "11", title: "Units, Dimensions & Measurement" },
+        { id: "phy-3", subjectId: "physics", cls: "11", title: "Motion in a Straight Line" },
+        { id: "phy-4", subjectId: "physics", cls: "11", title: "Motion in a Plane" },
+        { id: "phy-5", subjectId: "physics", cls: "11", title: "Laws of Motion" },
+        { id: "phy-6", subjectId: "physics", cls: "11", title: "Work, Energy & Power" },
+        { id: "phy-7", subjectId: "physics", cls: "11", title: "Circular Motion" },
+        { id: "phy-8", subjectId: "physics", cls: "11", title: "Centre of Mass & Collision" },
+        { id: "phy-9", subjectId: "physics", cls: "11", title: "Rotational Motion" },
+        { id: "phy-10", subjectId: "physics", cls: "11", title: "Gravitation" },
+        { id: "phy-11", subjectId: "physics", cls: "11", title: "Mechanical Properties of Solids" },
+        { id: "phy-12", subjectId: "physics", cls: "11", title: "Mechanical Properties of Fluids" },
+        { id: "phy-13", subjectId: "physics", cls: "11", title: "Thermal Properties, KTG & Thermodynamics" },
+        { id: "phy-14", subjectId: "physics", cls: "11", title: "Oscillations & Waves" },
+        { id: "phy-15", subjectId: "physics", cls: "12", title: "Electrostatics" },
+        { id: "phy-16", subjectId: "physics", cls: "12", title: "Electrostatic Potential & Capacitance" },
+        { id: "phy-17", subjectId: "physics", cls: "12", title: "Current Electricity" },
+        { id: "phy-18", subjectId: "physics", cls: "12", title: "Moving Charges & Magnetism" },
+        { id: "phy-19", subjectId: "physics", cls: "12", title: "Magnetism & Matter" },
+        { id: "phy-20", subjectId: "physics", cls: "12", title: "Electromagnetic Induction" },
+        { id: "phy-21", subjectId: "physics", cls: "12", title: "Alternating Current" },
+        { id: "phy-22", subjectId: "physics", cls: "12", title: "Electromagnetic Waves" },
+        { id: "phy-23", subjectId: "physics", cls: "12", title: "Ray Optics & Optical Instruments" },
+        { id: "phy-24", subjectId: "physics", cls: "12", title: "Wave Optics" },
+        { id: "phy-25", subjectId: "physics", cls: "12", title: "Dual Nature, Atoms, Nuclei & Semiconductor Electronics" },
+
+        // CHEMISTRY (25 Chapters: Class 11 [1-13], Class 12 [14-25])
+        { id: "chem-1", subjectId: "chemistry", cls: "11", title: "Some Basic Concepts of Chemistry" },
+        { id: "chem-2", subjectId: "chemistry", cls: "11", title: "Atomic Structure" },
+        { id: "chem-3", subjectId: "chemistry", cls: "11", title: "Classification of Elements & Periodicity" },
+        { id: "chem-4", subjectId: "chemistry", cls: "11", title: "Chemical Bonding & Molecular Structure" },
+        { id: "chem-5", subjectId: "chemistry", cls: "11", title: "Thermodynamics" },
+        { id: "chem-6", subjectId: "chemistry", cls: "11", title: "Chemical Equilibrium" },
+        { id: "chem-7", subjectId: "chemistry", cls: "11", title: "Ionic Equilibrium" },
+        { id: "chem-8", subjectId: "chemistry", cls: "11", title: "Redox Reactions" },
+        { id: "chem-9", subjectId: "chemistry", cls: "11", title: "Organic Chemistry: Basic Principles & Techniques" },
+        { id: "chem-10", subjectId: "chemistry", cls: "11", title: "Hydrocarbons" },
+        { id: "chem-11", subjectId: "chemistry", cls: "11", title: "Purification & Qualitative Analysis" },
+        { id: "chem-12", subjectId: "chemistry", cls: "11", title: "Isomerism & Stereochemistry" },
+        { id: "chem-13", subjectId: "chemistry", cls: "11", title: "Reaction Mechanism Basics" },
+        { id: "chem-14", subjectId: "chemistry", cls: "12", title: "Solutions" },
+        { id: "chem-15", subjectId: "chemistry", cls: "12", title: "Electrochemistry" },
+        { id: "chem-16", subjectId: "chemistry", cls: "12", title: "Chemical Kinetics" },
+        { id: "chem-17", subjectId: "chemistry", cls: "12", title: "d- and f-Block Elements" },
+        { id: "chem-18", subjectId: "chemistry", cls: "12", title: "Coordination Compounds" },
+        { id: "chem-19", subjectId: "chemistry", cls: "12", title: "Haloalkanes & Haloarenes" },
+        { id: "chem-20", subjectId: "chemistry", cls: "12", title: "Alcohols, Phenols & Ethers" },
+        { id: "chem-21", subjectId: "chemistry", cls: "12", title: "Aldehydes, Ketones & Carboxylic Acids" },
+        { id: "chem-22", subjectId: "chemistry", cls: "12", title: "Amines" },
+        { id: "chem-23", subjectId: "chemistry", cls: "12", title: "Biomolecules" },
+        { id: "chem-24", subjectId: "chemistry", cls: "12", title: "p-Block Elements" },
+        { id: "chem-25", subjectId: "chemistry", cls: "12", title: "Practical Chemistry" },
+
+        // BIOLOGY (Exact 1-32 NCERT Sequence: Class 11 [1-19], Class 12 [20-32])
+        { id: "bio-1", subjectId: "biology", cls: "11", title: "The Living World" },
+        { id: "bio-2", subjectId: "biology", cls: "11", title: "Biological Classification" },
+        { id: "bio-3", subjectId: "biology", cls: "11", title: "Plant Kingdom" },
+        { id: "bio-4", subjectId: "biology", cls: "11", title: "Animal Kingdom" },
+        { id: "bio-5", subjectId: "biology", cls: "11", title: "Morphology of Flowering Plants" },
+        { id: "bio-6", subjectId: "biology", cls: "11", title: "Anatomy of Flowering Plants" },
+        { id: "bio-7", subjectId: "biology", cls: "11", title: "Structural Organisation in Animals" },
+        { id: "bio-8", subjectId: "biology", cls: "11", title: "Cell: The Unit of Life" },
+        { id: "bio-9", subjectId: "biology", cls: "11", title: "Biomolecules" },
+        { id: "bio-10", subjectId: "biology", cls: "11", title: "Cell Cycle and Cell Division" },
+        { id: "bio-11", subjectId: "biology", cls: "11", title: "Photosynthesis in Higher Plants" },
+        { id: "bio-12", subjectId: "biology", cls: "11", title: "Respiration in Plants" },
+        { id: "bio-13", subjectId: "biology", cls: "11", title: "Plant Growth and Development" },
+        { id: "bio-14", subjectId: "biology", cls: "11", title: "Breathing and Exchange of Gases" },
+        { id: "bio-15", subjectId: "biology", cls: "11", title: "Body Fluids and Circulation" },
+        { id: "bio-16", subjectId: "biology", cls: "11", title: "Excretory Products and their Elimination" },
+        { id: "bio-17", subjectId: "biology", cls: "11", title: "Locomotion and Movement" },
+        { id: "bio-18", subjectId: "biology", cls: "11", title: "Neural Control and Coordination" },
+        { id: "bio-19", subjectId: "biology", cls: "11", title: "Chemical Coordination and Integration" },
+        { id: "bio-20", subjectId: "biology", cls: "12", title: "Sexual Reproduction in Flowering Plants" },
+        { id: "bio-21", subjectId: "biology", cls: "12", title: "Human Reproduction" },
+        { id: "bio-22", subjectId: "biology", cls: "12", title: "Reproductive Health" },
+        { id: "bio-23", subjectId: "biology", cls: "12", title: "Principles of Inheritance and Variation" },
+        { id: "bio-24", subjectId: "biology", cls: "12", title: "Molecular Basis of Inheritance" },
+        { id: "bio-25", subjectId: "biology", cls: "12", title: "Evolution" },
+        { id: "bio-26", subjectId: "biology", cls: "12", title: "Human Health and Disease" },
+        { id: "bio-27", subjectId: "biology", cls: "12", title: "Microbes in Human Welfare" },
+        { id: "bio-28", subjectId: "biology", cls: "12", title: "Biotechnology: Principles and Processes" },
+        { id: "bio-29", subjectId: "biology", cls: "12", title: "Biotechnology and its Applications" },
+        { id: "bio-30", subjectId: "biology", cls: "12", title: "Organisms and Populations" },
+        { id: "bio-31", subjectId: "biology", cls: "12", title: "Ecosystem" },
+        { id: "bio-32", subjectId: "biology", cls: "12", title: "Biodiversity and Conservation" }
+      ];
+
+      /* =====================================================================
+       * 4. DATE & STREAK UTILITIES
+       * ===================================================================== */
+      var DateUtil = {
+        todayStr: function () {
+          return this.formatISO(new Date());
+        },
+        formatISO: function (d) {
+          var y = d.getFullYear();
+          var m = String(d.getMonth() + 1).padStart(2, "0");
+          var day = String(d.getDate()).padStart(2, "0");
+          return y + "-" + m + "-" + day;
+        },
+        addDays: function (isoStr, delta) {
+          var p = String(isoStr).split("-").map(Number);
+          var dt = new Date(p[0], (p[1] || 1) - 1, p[2] || 1);
+          dt.setDate(dt.getDate() + delta);
+          return this.formatISO(dt);
+        },
+        computeStreaks: function (datesMap) {
+          var keys = Object.keys(datesMap || {}).filter(function (k) { return !!datesMap[k]; }).sort();
+          if (!keys.length) return { current: 0, best: 0 };
+          var best = 1;
+          var run = 1;
+          for (var i = 1; i < keys.length; i++) {
+            if (this.addDays(keys[i - 1], 1) === keys[i]) {
+              run++;
+              if (run > best) best = run;
+            } else {
+              run = 1;
+            }
+          }
+          var today = this.todayStr();
+          var yesterday = this.addDays(today, -1);
+          var cursor = datesMap[today] ? today : (datesMap[yesterday] ? yesterday : null);
+          var current = 0;
+          while (cursor && datesMap[cursor]) {
+            current++;
+            cursor = this.addDays(cursor, -1);
+          }
+          return { current: current, best: Math.max(best, current) };
+        }
+      };
+
+      /* =====================================================================
+       * 5. DEFAULT STATE & SCHEMA MIGRATION
+       * ===================================================================== */
+      function defaultFeatureFlags() {
+        return {
+          examCountdown: true,
+          backlogTracker: true,
+          subjectCharts: true,
+          habitMaker: true,
+          mockTests: true,
+          shareCard: true,
+          contactAdmin: true,
+          dailyTarget: false,
+          chapterNotes: false,
+          focusTimer: false,
+          confidenceRating: false
+        };
+      }
+
+      function createDefaultState() {
+        var today = DateUtil.todayStr();
+        var startDefault = DateUtil.addDays(today, -60);
+        return {
+          schemaVersion: CURRENT_SCHEMA_VERSION,
+          theme: "dark",
+          profile: {
+            name: "Guest Aspirant",
+            targetYear: "2027",
+            phone: ""
+          },
+          examCountdown: {
+            label: "NEET UG Target",
+            prepStartDate: startDefault,
+            examDate: "2027-05-02"
+          },
+          dailyGoal: {
+            target: 60,
+            solvedToday: 0,
+            lastDate: today
+          },
+          customSubjects: [],
+          customChapters: [],
+          progress: {},
+          habits: [
+            { id: "hab-1", title: "Daily NCERT Biology 1 Hr Revision", type: "build", dates: {} },
+            { id: "hab-2", title: "Zero Distraction / Shorts Scrolling", type: "quit", dates: {} }
+          ],
+          mockTests: [],
+          supportTickets: [],
+          adminSecurity: {
+            failedAttempts: 0,
+            lockedUntil: 0
+          },
+          adminConfig: {
+            pinHash: hashPin("1234"),
+            ownerPhoneHash: hashOwnerPhone("9999999999"),
+            ownerPhoneMasked: "99******99",
+            features: defaultFeatureFlags(),
+            notice: {
+              active: false,
+              text: "Welcome to MedicusMinds NEET! Set your Exam Countdown dates and track your syllabus daily."
+            },
+            sponsor: {
+              active: false,
+              title: "NCERT Line-by-Line Practice Series",
+              subtitle: "Boost your NEET Biology & Chemistry accuracy with daily curated sets.",
+              ctaText: "Explore Resource →",
+              linkUrl: "https://www.youtube.com/@medicusminds_official"
+            },
+            socialLinks: {
+              youtube: "https://www.youtube.com/@medicusminds_official",
+              telegram: "https://t.me/",
+              whatsapp: "https://whatsapp.com/"
+            },
+            ga4Id: "",
+            cloudEndpoint: "",
+            cloudKey: ""
+          }
+        };
+      }
+
+      function migrateState(raw) {
+        var base = createDefaultState();
+        if (!raw || typeof raw !== "object") return base;
+
+        var merged = {
+          schemaVersion: CURRENT_SCHEMA_VERSION,
+          theme: raw.theme === "light" ? "light" : "dark",
+          profile: Object.assign({}, base.profile, raw.profile || {}),
+          examCountdown: Object.assign({}, base.examCountdown, raw.examCountdown || {}),
+          dailyGoal: Object.assign({}, base.dailyGoal, raw.dailyGoal || {}),
+          customSubjects: Array.isArray(raw.customSubjects) ? raw.customSubjects : [],
+          customChapters: Array.isArray(raw.customChapters) ? raw.customChapters : [],
+          progress: raw.progress && typeof raw.progress === "object" && !Array.isArray(raw.progress) ? raw.progress : {},
+          habits: Array.isArray(raw.habits) ? raw.habits : base.habits,
+          mockTests: Array.isArray(raw.mockTests) ? raw.mockTests : [],
+          supportTickets: Array.isArray(raw.supportTickets) ? raw.supportTickets : [],
+          adminSecurity: Object.assign({}, base.adminSecurity, raw.adminSecurity || {}),
+          adminConfig: Object.assign({}, base.adminConfig, raw.adminConfig || {})
+        };
+
+        // Migrate legacy plain ownerPhone if present
+        if (raw.adminConfig && raw.adminConfig.ownerPhone && !raw.adminConfig.ownerPhoneHash) {
+          var normLegacy = normalizePhone(raw.adminConfig.ownerPhone);
+          if (normLegacy.length === 10) {
+            merged.adminConfig.ownerPhoneHash = hashOwnerPhone(normLegacy);
+            merged.adminConfig.ownerPhoneMasked = normLegacy.slice(0, 2) + "******" + normLegacy.slice(-2);
+          }
+          delete merged.adminConfig.ownerPhone;
+        }
+        if (!merged.adminConfig.ownerPhoneHash) {
+          merged.adminConfig.ownerPhoneHash = hashOwnerPhone("9999999999");
+          merged.adminConfig.ownerPhoneMasked = "99******99";
+        }
+
+        merged.adminConfig.features = Object.assign({}, defaultFeatureFlags(), (raw.adminConfig && raw.adminConfig.features) || {});
+        merged.adminConfig.notice = Object.assign({}, base.adminConfig.notice, (raw.adminConfig && raw.adminConfig.notice) || {});
+        merged.adminConfig.sponsor = Object.assign({}, base.adminConfig.sponsor, (raw.adminConfig && raw.adminConfig.sponsor) || {});
+        merged.adminConfig.socialLinks = Object.assign({}, base.adminConfig.socialLinks, (raw.adminConfig && raw.adminConfig.socialLinks) || {});
+
+        if (merged.dailyGoal.lastDate !== DateUtil.todayStr()) {
+          merged.dailyGoal.solvedToday = 0;
+          merged.dailyGoal.lastDate = DateUtil.todayStr();
+        }
+        return merged;
+      }
+
+      function loadState() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return createDefaultState();
+          return migrateState(JSON.parse(raw));
+        } catch (e) {
+          return createDefaultState();
+        }
+      }
+
+      function saveState(st) {
+        try {
+          st.schemaVersion = CURRENT_SCHEMA_VERSION;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(st));
+          return true;
+        } catch (e) {
+          showToast("Storage warning: please download a JSON backup.", "warning");
+          return false;
+        }
+      }
+
+      /* =====================================================================
+       * 6. TOAST & MODAL HELPERS
+       * ===================================================================== */
+      var deferredInstallPrompt = null;
+      window.addEventListener("beforeinstallprompt", function (e) {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+      });
+
+      function showToast(msg, type) {
+        var box = document.getElementById("toast-container");
+        if (!box) return;
+        var el = document.createElement("div");
+        var cls = {
+          default: "bg-slate-900 dark:bg-slate-800 text-white border-slate-700",
+          success: "bg-emerald-600 text-white border-emerald-500",
+          warning: "bg-amber-600 text-white border-amber-500",
+          error: "bg-rose-600 text-white border-rose-500"
+        };
+        el.className = "pointer-events-auto px-4 py-3 rounded-xl border shadow-lg text-xs font-medium transition-all duration-200 " + (cls[type || "default"] || cls.default);
+        el.textContent = msg;
+        box.appendChild(el);
+        setTimeout(function () {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(6px)";
+          setTimeout(function () { el.remove(); }, 220);
+        }, 2500);
+      }
+
+      var Modal = {
+        open: function (id) {
+          var el = document.getElementById(id);
+          if (el) {
+            el.classList.remove("hidden");
+            el.classList.add("flex");
+          }
+        },
+        close: function (id) {
+          var el = document.getElementById(id);
+          if (el) {
+            el.classList.add("hidden");
+            el.classList.remove("flex");
+          }
+        }
+      };
+
+      /* =====================================================================
+       * 7. APPLICATION STATE & CORE LOGIC
+       * ===================================================================== */
+      var App = {
+        data: null,
+        ui: {
+          route: "home",
+          history: [],
+          activeSubjectId: "physics",
+          activeChapterId: null,
+          classFilter: "all",
+          statusFilter: "all",
+          habitMonthOffset: 0,
+          adminUnlocked: false,
+          adminTab: "notice",
+          studentSort: "progress",
+          logoTaps: 0,
+          logoTimer: null,
+          timer: {
+            chapterId: null,
+            presetMinutes: 25,
+            remainingSeconds: 25 * 60,
+            running: false,
+            intervalId: null
+          }
+        },
+
+        init: function () {
+          this.data = loadState();
+          if (isOwnerPhoneMatch(this.data.profile && this.data.profile.phone, this.data.adminConfig)) {
+            this.ui.adminUnlocked = true;
+          }
+          this.applyTheme();
+          this.bindEvents();
+          this.render();
+        },
+
+        persist: function () {
+          saveState(this.data);
+        },
+
+        applyTheme: function () {
+          var isDark = this.data.theme === "dark";
+          document.documentElement.classList.toggle("dark", isDark);
+          var icon = document.getElementById("theme-icon");
+          if (icon) icon.textContent = isDark ? "☀️" : "🌙";
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", isDark ? "#090D16" : "#F8FAFC");
+        },
+
+        getAllSubjects: function () {
+          return DEFAULT_SUBJECTS.concat(this.data.customSubjects || []);
+        },
+
+        getAllChapters: function () {
+          return DEFAULT_CHAPTERS.concat(this.data.customChapters || []);
+        },
+
+        getChapterData: function (chId) {
+          var existing = this.data.progress[chId];
+          if (!existing) {
+            return {
+              classDone: false,
+              ncertRead: false,
+              r1: false,
+              r2: false,
+              r3: false,
+              confidence: "medium",
+              notes: "",
+              exercises: [
+                { id: "ex-1", name: "Exercise 1 (Concept Builder)", done: 0, total: 45, completed: false, isCustom: false },
+                { id: "ex-2", name: "Exercise 2 (NEET PYQs)", done: 0, total: 35, completed: false, isCustom: false }
+              ]
+            };
+          }
+          var exList = Array.isArray(existing.exercises) ? existing.exercises.map(function (ex) {
+            var total = Math.max(0, Number(ex.total) || 0);
+            var done = Math.max(0, Math.min(total, Number(ex.done != null ? ex.done : ex.solved) || 0));
+            var completed = Boolean(ex.completed || (total > 0 && done >= total));
+            return {
+              id: ex.id || ("ex-" + Math.random().toString(36).slice(2, 7)),
+              name: ex.name || "Exercise",
+              done: done,
+              total: total,
+              completed: completed,
+              isCustom: !!ex.isCustom
+            };
+          }) : [];
+
+          return {
+            classDone: !!existing.classDone,
+            ncertRead: !!existing.ncertRead,
+            r1: !!existing.r1,
+            r2: !!existing.r2,
+            r3: !!existing.r3,
+            confidence: (existing.confidence === "low" || existing.confidence === "high") ? existing.confidence : "medium",
+            notes: typeof existing.notes === "string" ? existing.notes : "",
+            exercises: exList
+          };
+        },
+
+        ensureChapterData: function (chId) {
+          this.data.progress[chId] = this.getChapterData(chId);
+          return this.data.progress[chId];
+        },
+
+        // SMART AUTO-BACKLOG: True iff classDone === true AND question practice is incomplete
+        computeChapterMetrics: function (chId) {
+          var ch = this.getChapterData(chId);
+          var doneQs = 0;
+          var totalQs = 0;
+          var anyExerciseIncomplete = false;
+
+          ch.exercises.forEach(function (ex) {
+            doneQs += ex.done;
+            totalQs += ex.total;
+            if (!ex.completed && ex.done < ex.total) {
+              anyExerciseIncomplete = true;
+            }
+          });
+
+          var pendingQs = Math.max(0, totalQs - doneQs);
+          var practiceComplete = ch.exercises.length > 0 && !anyExerciseIncomplete && pendingQs === 0;
+          var isAutoBacklog = Boolean(ch.classDone && !practiceComplete);
+
+          var score = 0;
+          if (ch.classDone) score += 30;
+          if (ch.ncertRead) score += 15;
+          if (ch.r1) score += 5;
+          if (ch.r2) score += 5;
+          if (ch.r3) score += 5;
+          if (totalQs > 0) {
+            score += Math.round((doneQs / totalQs) * 40);
+          } else if (practiceComplete) {
+            score += 40;
+          }
+
+          return {
+            ch: ch,
+            doneQs: doneQs,
+            totalQs: totalQs,
+            pendingQs: pendingQs,
+            practiceComplete: practiceComplete,
+            isAutoBacklog: isAutoBacklog,
+            pct: Math.min(100, score)
+          };
+        },
+
+        computeSubjectMetrics: function (subjectId) {
+          var self = this;
+          var chapters = this.getAllChapters().filter(function (c) { return c.subjectId === subjectId; });
+          var totalChapters = chapters.length;
+          var completedChapters = 0;
+          var inProgressChapters = 0;
+          var pendingChapters = 0;
+          var backlogChapters = 0;
+          var solvedQs = 0;
+          var totalQs = 0;
+          var sumPct = 0;
+
+          chapters.forEach(function (c) {
+            var m = self.computeChapterMetrics(c.id);
+            sumPct += m.pct;
+            solvedQs += m.doneQs;
+            totalQs += m.totalQs;
+            if (m.isAutoBacklog) backlogChapters++;
+
+            if (m.ch.classDone && m.practiceComplete) {
+              completedChapters++;
+            } else if (m.ch.classDone || m.ch.ncertRead || m.doneQs > 0 || m.ch.r1) {
+              inProgressChapters++;
+            } else {
+              pendingChapters++;
+            }
+          });
+
+          var overallPct = totalChapters > 0 ? Math.round(sumPct / totalChapters) : 0;
+          return {
+            totalChapters: totalChapters,
+            completedChapters: completedChapters,
+            inProgressChapters: inProgressChapters,
+            pendingChapters: pendingChapters,
+            backlogChapters: backlogChapters,
+            solvedQs: solvedQs,
+            totalQs: totalQs,
+            overallPct: overallPct
+          };
+        },
+
+        computeOverallMetrics: function () {
+          var self = this;
+          var all = this.getAllChapters();
+          var backlogList = [];
+          var completedCount = 0;
+          var totalSolved = 0;
+          var sumPct = 0;
+
+          all.forEach(function (c) {
+            var m = self.computeChapterMetrics(c.id);
+            sumPct += m.pct;
+            totalSolved += m.doneQs;
+            if (m.ch.classDone && m.practiceComplete) completedCount++;
+            if (m.isAutoBacklog) {
+              backlogList.push({ chapter: c, metrics: m });
+            }
+          });
+
+          return {
+            totalChapters: all.length,
+            completedCount: completedCount,
+            totalSolved: totalSolved,
+            backlogList: backlogList,
+            syllabusPct: all.length > 0 ? Math.round(sumPct / all.length) : 0
+          };
+        },
+
+        getExamCountdownStats: function () {
+          var todayIso = DateUtil.todayStr();
+          var ec = this.data.examCountdown || {
+            label: "NEET UG Target",
+            prepStartDate: DateUtil.addDays(todayIso, -60),
+            examDate: "2027-05-02"
+          };
+          var parseDt = function (iso) {
+            var p = String(iso || todayIso).split("-").map(Number);
+            return new Date(p[0], (p[1] || 1) - 1, p[2] || 1);
+          };
+          var todayDt = parseDt(todayIso);
+          var startDt = parseDt(ec.prepStartDate);
+          var examDt = parseDt(ec.examDate);
+          var msDay = 86400000;
+
+          var daysLeft = Math.round((examDt.getTime() - todayDt.getTime()) / msDay);
+          var totalSpan = Math.max(1, Math.round((examDt.getTime() - startDt.getTime()) / msDay));
+          var elapsed = Math.max(0, Math.min(totalSpan, Math.round((todayDt.getTime() - startDt.getTime()) / msDay)));
+          var timelinePct = daysLeft <= 0 ? 100 : Math.min(100, Math.max(0, Math.round((elapsed / totalSpan) * 100)));
+
+          return {
+            label: ec.label || "NEET UG Target",
+            prepStartDate: ec.prepStartDate,
+            examDate: ec.examDate,
+            formattedStart: startDt.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
+            formattedExam: examDt.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
+            daysLeft: daysLeft,
+            elapsed: elapsed,
+            timelinePct: timelinePct
+          };
+        },
+
+        getTopHabitStreak: function () {
+          var max = 0;
+          (this.data.habits || []).forEach(function (h) {
+            var c = DateUtil.computeStreaks(h.dates).current;
+            if (c > max) max = c;
+          });
+          return max;
+        },
+
+        /* ===================================================================
+         * 8. NAVIGATION & SIDEBAR CONTROLS
+         * =================================================================== */
+        openSidebar: function () {
+          document.getElementById("sidebar-backdrop").classList.remove("hidden");
+          document.getElementById("sidebar-drawer").classList.remove("-translate-x-full");
+        },
+
+        closeSidebar: function () {
+          document.getElementById("sidebar-backdrop").classList.add("hidden");
+          document.getElementById("sidebar-drawer").classList.add("-translate-x-full");
+        },
+
+        navigate: function (route, payloadId, skipHistory) {
+          if (!skipHistory) {
+            var isSame = this.ui.route === route &&
+              (route !== "subject" || this.ui.activeSubjectId === payloadId) &&
+              (route !== "chapter" || this.ui.activeChapterId === payloadId);
+            if (!isSame) {
+              this.ui.history.push({
+                route: this.ui.route,
+                subjectId: this.ui.activeSubjectId,
+                chapterId: this.ui.activeChapterId
+              });
+              if (this.ui.history.length > 30) this.ui.history.shift();
+            }
+          }
+
+          if (route === "subject" && payloadId) {
+            this.ui.activeSubjectId = payloadId;
+            this.ui.classFilter = "all";
+            this.ui.statusFilter = "all";
+          } else if (route === "chapter" && payloadId) {
+            this.ui.activeChapterId = payloadId;
+            var chObj = this.getAllChapters().find(function (c) { return c.id === payloadId; });
+            if (chObj) this.ui.activeSubjectId = chObj.subjectId;
+          }
+
+          this.ui.route = route;
+          this.closeSidebar();
+          this.render();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        },
+
+        goBack: function () {
+          if (this.ui.history.length > 0) {
+            var prev = this.ui.history.pop();
+            if (prev.subjectId) this.ui.activeSubjectId = prev.subjectId;
+            if (prev.chapterId) this.ui.activeChapterId = prev.chapterId;
+            this.ui.route = prev.route || "home";
+            this.closeSidebar();
+            this.render();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+          }
+          if (this.ui.route === "chapter") {
+            this.navigate("subject", this.ui.activeSubjectId, true);
+          } else {
+            this.navigate("home", null, true);
+          }
+        },
+
+        handleLogoTap: function () {
+          var self = this;
+          this.ui.logoTaps += 1;
+          clearTimeout(this.ui.logoTimer);
+          this.ui.logoTimer = setTimeout(function () {
+            self.ui.logoTaps = 0;
+          }, 2200);
+
+          if (this.ui.logoTaps >= 5) {
+            this.ui.logoTaps = 0;
+            if (this.ui.adminUnlocked) {
+              this.navigate("admin");
+              return;
+            }
+            var sec = this.data.adminSecurity || { failedAttempts: 0, lockedUntil: 0 };
+            var banner = document.getElementById("admin-lockout-banner");
+            if (sec.lockedUntil && Date.now() < sec.lockedUntil) {
+              var mins = Math.ceil((sec.lockedUntil - Date.now()) / 60000);
+              if (banner) {
+                banner.textContent = "Too many failed attempts. Locked for " + mins + " minute(s).";
+                banner.classList.remove("hidden");
+              }
+            } else if (banner) {
+              banner.classList.add("hidden");
+            }
+            document.getElementById("input-admin-pin").value = "";
+            Modal.open("modal-admin-pin");
+            setTimeout(function () { document.getElementById("input-admin-pin").focus(); }, 60);
+          } else if (this.ui.route !== "home") {
+            this.navigate("home");
+          }
+        },
+
+        /* ===================================================================
+         * 9. FOCUS TIMER HELPERS (DEFAULT OFF, ADMIN-SWITCHABLE)
+         * =================================================================== */
+        startTimer: function (chId) {
+          var self = this;
+          if (this.ui.timer.intervalId) clearInterval(this.ui.timer.intervalId);
+          this.ui.timer.chapterId = chId;
+          this.ui.timer.running = true;
+          this.ui.timer.intervalId = setInterval(function () {
+            if (!self.ui.timer.running) return;
+            if (self.ui.timer.remainingSeconds > 0) {
+              self.ui.timer.remainingSeconds -= 1;
+              var el = document.getElementById("chapter-timer-clock");
+              if (el) {
+                var m = Math.floor(self.ui.timer.remainingSeconds / 60);
+                var s = self.ui.timer.remainingSeconds % 60;
+                el.textContent = String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+              }
+            } else {
+              self.pauseTimer();
+              self.ui.timer.remainingSeconds = self.ui.timer.presetMinutes * 60;
+              showToast("Focus session complete!", "success");
+              self.render();
+            }
+          }, 1000);
+          this.render();
+        },
+
+        pauseTimer: function () {
+          this.ui.timer.running = false;
+          if (this.ui.timer.intervalId) {
+            clearInterval(this.ui.timer.intervalId);
+            this.ui.timer.intervalId = null;
+          }
+          this.render();
+        },
+
+        resetTimer: function (mins) {
+          this.pauseTimer();
+          var m = mins || this.ui.timer.presetMinutes || 25;
+          this.ui.timer.presetMinutes = m;
+          this.ui.timer.remainingSeconds = m * 60;
+          this.render();
+        },
+
+        /* ===================================================================
+         * 10. EVENT BINDING
+         * =================================================================== */
+        bindEvents: function () {
+          var self = this;
+
+          document.addEventListener("click", function (e) {
+            var btn = e.target.closest("[data-action]");
+            if (!btn) return;
+            var action = btn.getAttribute("data-action");
+
+            switch (action) {
+              case "open-sidebar":
+                self.openSidebar();
+                break;
+              case "close-sidebar":
+                self.closeSidebar();
+                break;
+              case "logo-tap":
+                self.handleLogoTap();
+                break;
+              case "go-back":
+                self.goBack();
+                break;
+              case "toggle-theme":
+                self.data.theme = self.data.theme === "dark" ? "light" : "dark";
+                self.applyTheme();
+                self.persist();
+                break;
+              case "navigate":
+                self.navigate(btn.getAttribute("data-route"), btn.getAttribute("data-id"));
+                break;
+              case "open-modal": {
+                var mId = btn.getAttribute("data-modal");
+                if (mId === "modal-exam-countdown") {
+                  var ec = self.getExamCountdownStats();
+                  document.getElementById("input-exam-label").value = ec.label;
+                  document.getElementById("input-prep-start-date").value = ec.prepStartDate;
+                  document.getElementById("input-target-exam-date").value = ec.examDate;
+                } else if (mId === "modal-daily-target") {
+                  document.getElementById("input-daily-target").value = self.data.dailyGoal.target || 60;
+                }
+                Modal.open(mId);
+                break;
+              }
+              case "close-modal":
+                Modal.close(btn.getAttribute("data-modal"));
+                break;
+              case "set-class-filter":
+                self.ui.classFilter = btn.getAttribute("data-filter");
+                self.render();
+                break;
+              case "set-status-filter":
+                self.ui.statusFilter = btn.getAttribute("data-filter");
+                self.render();
+                break;
+              case "toggle-flag": {
+                var chId = btn.getAttribute("data-ch");
+                var flag = btn.getAttribute("data-flag");
+                var chData = self.ensureChapterData(chId);
+                chData[flag] = !chData[flag];
+                self.persist();
+                self.render();
+                break;
+              }
+              case "set-confidence": {
+                var chIdConf = btn.getAttribute("data-ch");
+                var level = btn.getAttribute("data-level");
+                var chConf = self.ensureChapterData(chIdConf);
+                chConf.confidence = level;
+                self.persist();
+                self.render();
+                break;
+              }
+              case "toggle-ex-complete": {
+                var chIdEx = btn.getAttribute("data-ch");
+                var exId = btn.getAttribute("data-ex");
+                var chEx = self.ensureChapterData(chIdEx);
+                var exObj = chEx.exercises.find(function (x) { return x.id === exId; });
+                if (exObj) {
+                  var prevDone = exObj.done;
+                  exObj.completed = !exObj.completed;
+                  if (exObj.completed) {
+                    exObj.done = exObj.total;
+                  } else if (exObj.done >= exObj.total) {
+                    exObj.done = 0;
+                  }
+                  self.data.dailyGoal.solvedToday = Math.max(0, (self.data.dailyGoal.solvedToday || 0) + (exObj.done - prevDone));
+                  self.persist();
+                  self.render();
+                }
+                break;
+              }
+              case "step-ex": {
+                var chStep = btn.getAttribute("data-ch");
+                var exStep = btn.getAttribute("data-ex");
+                var field = btn.getAttribute("data-field");
+                var delta = parseInt(btn.getAttribute("data-delta"), 10);
+                var chS = self.ensureChapterData(chStep);
+                var exS = chS.exercises.find(function (x) { return x.id === exStep; });
+                if (exS) {
+                  var oldDone = exS.done;
+                  if (field === "total") {
+                    exS.total = Math.max(1, Math.min(5000, exS.total + delta));
+                    if (exS.done > exS.total) exS.done = exS.total;
+                  } else {
+                    exS.done = Math.max(0, Math.min(exS.total, exS.done + delta));
+                  }
+                  exS.completed = exS.total > 0 && exS.done >= exS.total;
+                  self.data.dailyGoal.solvedToday = Math.max(0, (self.data.dailyGoal.solvedToday || 0) + (exS.done - oldDone));
+                  self.persist();
+                  self.render();
+                }
+                break;
+              }
+              case "delete-exercise": {
+                var chDel = btn.getAttribute("data-ch");
+                var exDel = btn.getAttribute("data-ex");
+                var chD = self.ensureChapterData(chDel);
+                chD.exercises = chD.exercises.filter(function (x) { return x.id !== exDel; });
+                self.persist();
+                self.render();
+                showToast("Exercise removed");
+                break;
+              }
+              case "timer-preset":
+                self.resetTimer(parseInt(btn.getAttribute("data-mins"), 10) || 25);
+                break;
+              case "timer-start":
+                self.startTimer(btn.getAttribute("data-ch"));
+                break;
+              case "timer-pause":
+                self.pauseTimer();
+                break;
+              case "timer-reset":
+                self.resetTimer();
+                break;
+              case "toggle-habit-date": {
+                var hId = btn.getAttribute("data-habit");
+                var iso = btn.getAttribute("data-date");
+                var hab = (self.data.habits || []).find(function (h) { return h.id === hId; });
+                if (hab) {
+                  if (!hab.dates) hab.dates = {};
+                  if (hab.dates[iso]) delete hab.dates[iso];
+                  else hab.dates[iso] = true;
+                  self.persist();
+                  self.render();
+                }
+                break;
+              }
+              case "habit-month":
+                self.ui.habitMonthOffset += parseInt(btn.getAttribute("data-delta"), 10);
+                self.render();
+                break;
+              case "delete-habit": {
+                var delH = btn.getAttribute("data-habit");
+                self.data.habits = (self.data.habits || []).filter(function (h) { return h.id !== delH; });
+                self.persist();
+                self.render();
+                showToast("Habit deleted");
+                break;
+              }
+              case "delete-test": {
+                var delT = btn.getAttribute("data-test");
+                self.data.mockTests = (self.data.mockTests || []).filter(function (t) { return t.id !== delT; });
+                self.persist();
+                self.render();
+                showToast("Test removed");
+                break;
+              }
+              case "copy-share": {
+                var ta = document.getElementById("share-summary-box");
+                if (ta) {
+                  ta.select();
+                  ta.setSelectionRange(0, 99999);
+                  try {
+                    document.execCommand("copy");
+                    showToast("Summary copied to clipboard!", "success");
+                  } catch (err) {
+                    showToast("Select and copy the summary text manually", "warning");
+                  }
+                }
+                break;
+              }
+              case "export-backup": {
+                var exportObj = {
+                  app: "MedicusMinds NEET",
+                  schemaVersion: CURRENT_SCHEMA_VERSION,
+                  exportedAt: new Date().toISOString(),
+                  appData: self.data
+                };
+                var blob = new Blob([JSON.stringify(exportObj, null, 2)], { type: "application/json" });
+                var url = URL.createObjectURL(blob);
+                var link = document.createElement("a");
+                link.href = url;
+                link.download = "medicusminds-neet-backup-" + DateUtil.todayStr() + ".json";
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+                showToast("JSON Backup downloaded!", "success");
+                break;
+              }
+              case "install-pwa": {
+                if (deferredInstallPrompt) {
+                  deferredInstallPrompt.prompt();
+                  deferredInstallPrompt.userChoice.finally(function () {
+                    deferredInstallPrompt = null;
+                  });
+                } else {
+                  Modal.open("modal-pwa-help");
+                }
+                break;
+              }
+              case "admin-tab":
+                self.ui.adminTab = btn.getAttribute("data-tab");
+                self.render();
+                break;
+              case "toggle-feature": {
+                var fKey = btn.getAttribute("data-feature");
+                var feats = self.data.adminConfig.features;
+                feats[fKey] = !feats[fKey];
+                self.persist();
+                self.render();
+                showToast("Feature updated: " + fKey + " is now " + (feats[fKey] ? "ON" : "OFF"), "success");
+                break;
+              }
+              case "resolve-ticket": {
+                var tkId = btn.getAttribute("data-ticket");
+                var tk = (self.data.supportTickets || []).find(function (x) { return x.id === tkId; });
+                if (tk) tk.resolved = true;
+                self.persist();
+                self.render();
+                showToast("Issue marked resolved", "success");
+                break;
+              }
+              case "delete-ticket": {
+                var dTk = btn.getAttribute("data-ticket");
+                self.data.supportTickets = (self.data.supportTickets || []).filter(function (x) { return x.id !== dTk; });
+                self.persist();
+                self.render();
+                showToast("Issue deleted");
+                break;
+              }
+            }
+          });
+
+          // Handle inline numeric inputs, chapter notes, and JSON restore file input
+          document.addEventListener("change", function (e) {
+            if (e.target && e.target.id === "input-restore-json") {
+              var file = e.target.files && e.target.files[0];
+              if (!file) return;
+              if (file.size > 5 * 1024 * 1024) {
+                showToast("Backup file is too large (max 5MB).", "error");
+                e.target.value = "";
+                return;
+              }
+              var reader = new FileReader();
+              reader.onload = function (ev) {
+                try {
+                  var parsed = JSON.parse(String(ev.target.result || ""));
+                  var valid = validateBackupPayload(parsed);
+                  if (!valid) {
+                    showToast("Invalid MedicusMinds backup JSON file.", "error");
+                    return;
+                  }
+                  self.data = migrateState(valid);
+                  if (isOwnerPhoneMatch(self.data.profile && self.data.profile.phone, self.data.adminConfig)) {
+                    self.ui.adminUnlocked = true;
+                  }
+                  self.applyTheme();
+                  self.persist();
+                  self.render();
+                  showToast("Backup restored successfully!", "success");
+                } catch (err) {
+                  showToast("Could not parse JSON file.", "error");
+                }
+              };
+              reader.readAsText(file);
+              e.target.value = "";
+              return;
+            }
+
+            if (e.target && e.target.hasAttribute("data-chapter-notes")) {
+              var nChId = e.target.getAttribute("data-ch");
+              var chN = self.ensureChapterData(nChId);
+              chN.notes = String(e.target.value || "").slice(0, 1500);
+              self.persist();
+              showToast("Notes saved", "success");
+              return;
+            }
+
+            var exInput = e.target.closest("[data-ex-input]");
+            if (exInput) {
+              var chId = exInput.getAttribute("data-ch");
+              var exId = exInput.getAttribute("data-ex");
+              var field = exInput.getAttribute("data-ex-input");
+              var chObj = self.ensureChapterData(chId);
+              var exObj = chObj.exercises.find(function (x) { return x.id === exId; });
+              if (!exObj) return;
+
+              var val = Math.max(0, Math.min(5000, parseInt(exInput.value, 10) || 0));
+              var oldDone = exObj.done;
+              if (field === "total") {
+                exObj.total = Math.max(1, val);
+                if (exObj.done > exObj.total) exObj.done = exObj.total;
+              } else {
+                exObj.done = Math.min(exObj.total, val);
+              }
+              exObj.completed = exObj.total > 0 && exObj.done >= exObj.total;
+              self.data.dailyGoal.solvedToday = Math.max(0, (self.data.dailyGoal.solvedToday || 0) + (exObj.done - oldDone));
+              self.persist();
+              self.render();
+            }
+          });
+
+          // Form Submissions
+          document.addEventListener("submit", function (e) {
+            var form = e.target.closest("[data-form]");
+            if (!form) return;
+            e.preventDefault();
+            var type = form.getAttribute("data-form");
+
+            if (type === "exam-countdown") {
+              var label = document.getElementById("input-exam-label").value.trim().slice(0, 50) || "NEET UG Target";
+              var prepStartDate = document.getElementById("input-prep-start-date").value;
+              var examDate = document.getElementById("input-target-exam-date").value;
+              if (!/^\d{4}-\d{2}-\d{2}$/.test(prepStartDate) || !/^\d{4}-\d{2}-\d{2}$/.test(examDate)) {
+                showToast("Please choose valid dates.", "error");
+                return;
+              }
+              self.data.examCountdown = { label: label, prepStartDate: prepStartDate, examDate: examDate };
+              self.persist();
+              Modal.close("modal-exam-countdown");
+              self.render();
+              showToast("Exam countdown updated!", "success");
+            } else if (type === "daily-target") {
+              var tVal = Math.max(5, Math.min(1000, parseInt(document.getElementById("input-daily-target").value, 10) || 60));
+              self.data.dailyGoal.target = tVal;
+              self.persist();
+              Modal.close("modal-daily-target");
+              self.render();
+              showToast("Daily question target saved", "success");
+            } else if (type === "add-subject") {
+              var sName = document.getElementById("input-new-subject-name").value.trim().slice(0, 60);
+              var sColor = document.getElementById("input-new-subject-color").value;
+              if (!sName) return;
+              var newSubId = "subj-" + Date.now();
+              self.data.customSubjects.push({
+                id: newSubId,
+                name: sName,
+                color: sColor,
+                icon: "📘",
+                subtitle: "Custom Subject Tracker"
+              });
+              self.persist();
+              form.reset();
+              Modal.close("modal-add-subject");
+              self.navigate("subject", newSubId);
+              showToast("Subject created!", "success");
+            } else if (type === "add-chapter") {
+              var cTitle = document.getElementById("input-new-chapter-title").value.trim().slice(0, 120);
+              var cCls = document.getElementById("input-new-chapter-class").value;
+              if (!cTitle) return;
+              self.data.customChapters.push({
+                id: "ch-" + Date.now(),
+                subjectId: self.ui.activeSubjectId,
+                cls: cCls,
+                title: cTitle
+              });
+              self.persist();
+              form.reset();
+              Modal.close("modal-add-chapter");
+              self.render();
+              showToast("Chapter added!", "success");
+            } else if (type === "add-exercise") {
+              var exName = document.getElementById("input-new-ex-name").value.trim().slice(0, 60);
+              var exTotal = Math.max(1, Math.min(5000, parseInt(document.getElementById("input-new-ex-total").value, 10) || 40));
+              if (!exName || !self.ui.activeChapterId) return;
+              var chTarget = self.ensureChapterData(self.ui.activeChapterId);
+              chTarget.exercises.push({
+                id: "ex-" + Date.now(),
+                name: exName,
+                done: 0,
+                total: exTotal,
+                completed: false,
+                isCustom: true
+              });
+              self.persist();
+              form.reset();
+              Modal.close("modal-add-exercise");
+              self.render();
+              showToast("Exercise added!", "success");
+            } else if (type === "add-habit") {
+              var hType = document.getElementById("input-habit-type").value;
+              var hTitle = document.getElementById("input-habit-title").value.trim().slice(0, 100);
+              if (!hTitle) return;
+              self.data.habits.unshift({
+                id: "hab-" + Date.now(),
+                title: hTitle,
+                type: hType === "quit" ? "quit" : "build",
+                dates: {}
+              });
+              self.persist();
+              form.reset();
+              self.render();
+              showToast("Habit added!", "success");
+            } else if (type === "add-test") {
+              var testName = document.getElementById("input-test-name").value.trim().slice(0, 80);
+              var testDate = document.getElementById("input-test-date").value || DateUtil.todayStr();
+              var testTotal = Math.max(0, Math.min(720, parseInt(document.getElementById("input-test-total").value, 10) || 0));
+              var testPhy = document.getElementById("input-test-phy").value;
+              var testChem = document.getElementById("input-test-chem").value;
+              var testBio = document.getElementById("input-test-bio").value;
+              if (!testName) return;
+              self.data.mockTests.push({
+                id: "test-" + Date.now(),
+                name: testName,
+                date: testDate,
+                total: testTotal,
+                phy: testPhy !== "" ? Math.max(0, Math.min(180, Number(testPhy))) : null,
+                chem: testChem !== "" ? Math.max(0, Math.min(180, Number(testChem))) : null,
+                bio: testBio !== "" ? Math.max(0, Math.min(360, Number(testBio))) : null
+              });
+              self.persist();
+              form.reset();
+              self.render();
+              showToast("Mock test logged!", "success");
+            } else if (type === "save-profile") {
+              var pName = document.getElementById("profile-name").value.trim().slice(0, 60) || "Guest Aspirant";
+              var pYear = document.getElementById("profile-year").value.trim().slice(0, 10) || "2027";
+              var pPhone = document.getElementById("profile-phone").value.trim().slice(0, 20);
+              self.data.profile = { name: pName, targetYear: pYear, phone: pPhone };
+              if (isOwnerPhoneMatch(pPhone, self.data.adminConfig)) {
+                self.ui.adminUnlocked = true;
+                showToast("Profile saved & Owner Admin Console unlocked!", "success");
+              } else {
+                showToast("Student profile saved!", "success");
+              }
+              self.persist();
+              self.render();
+            } else if (type === "support-issue") {
+              var supName = document.getElementById("support-name").value.trim().slice(0, 60);
+              var supPhone = document.getElementById("support-phone").value.trim().slice(0, 20);
+              var supMsg = document.getElementById("support-msg").value.trim().slice(0, 600);
+              if (!supName || !supMsg) return;
+              self.data.supportTickets.unshift({
+                id: "tk-" + Date.now(),
+                name: supName,
+                phone: supPhone,
+                message: supMsg,
+                date: new Date().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" }),
+                resolved: false
+              });
+              self.persist();
+              form.reset();
+              showToast("Issue sent to Admin Inbox!", "success");
+              self.navigate("home");
+            } else if (type === "admin-pin") {
+              var sec = self.data.adminSecurity || { failedAttempts: 0, lockedUntil: 0 };
+              if (sec.lockedUntil && Date.now() < sec.lockedUntil) {
+                var mLeft = Math.ceil((sec.lockedUntil - Date.now()) / 60000);
+                showToast("Locked for " + mLeft + " more minute(s).", "error");
+                return;
+              }
+              var entered = document.getElementById("input-admin-pin").value.trim();
+              if (verifyAdminCredential(entered, self.data.adminConfig)) {
+                self.data.adminSecurity = { failedAttempts: 0, lockedUntil: 0 };
+                self.persist();
+                self.ui.adminUnlocked = true;
+                Modal.close("modal-admin-pin");
+                self.navigate("admin");
+                showToast("Owner Admin Console Unlocked", "success");
+              } else {
+                var attempts = (sec.failedAttempts || 0) + 1;
+                if (attempts >= 5) {
+                  self.data.adminSecurity = { failedAttempts: 0, lockedUntil: Date.now() + 5 * 60 * 1000 };
+                  self.persist();
+                  Modal.close("modal-admin-pin");
+                  showToast("5 failed attempts. Locked for 5 minutes.", "error");
+                } else {
+                  self.data.adminSecurity = { failedAttempts: attempts, lockedUntil: 0 };
+                  self.persist();
+                  showToast("Incorrect PIN/Phone (" + (5 - attempts) + " attempts left)", "error");
+                }
+              }
+            } else if (type === "admin-notice-ad") {
+              var nActive = document.getElementById("admin-notice-active").checked;
+              var nText = document.getElementById("admin-notice-text").value.trim().slice(0, 250);
+              var sActive = document.getElementById("admin-ad-active").checked;
+              var sTitle = document.getElementById("admin-ad-title").value.trim().slice(0, 120);
+              var sSub = document.getElementById("admin-ad-sub").value.trim().slice(0, 200);
+              var sCta = document.getElementById("admin-ad-cta").value.trim().slice(0, 35) || "Explore →";
+              var rawUrl = document.getElementById("admin-ad-url").value.trim();
+              var cleanUrl = rawUrl ? safeUrl(rawUrl) : "";
+              if (rawUrl && !cleanUrl) {
+                showToast("Invalid Ad URL: only https:// or http:// allowed.", "error");
+                return;
+              }
+              self.data.adminConfig.notice = { active: nActive, text: nText };
+              self.data.adminConfig.sponsor = {
+                active: sActive,
+                title: sTitle,
+                subtitle: sSub,
+                ctaText: sCta,
+                linkUrl: cleanUrl
+              };
+              self.persist();
+              self.render();
+              showToast("Notice & Ad settings saved!", "success");
+            } else if (type === "admin-owner-phone") {
+              var rawOwnerPhone = document.getElementById("admin-owner-phone").value.trim();
+              var normOwnerPhone = normalizePhone(rawOwnerPhone);
+              if (normOwnerPhone.length !== 10) {
+                showToast("Enter a valid 10-digit Owner Phone Number.", "error");
+                return;
+              }
+              self.data.adminConfig.ownerPhoneHash = hashOwnerPhone(normOwnerPhone);
+              self.data.adminConfig.ownerPhoneMasked = normOwnerPhone.slice(0, 2) + "******" + normOwnerPhone.slice(-2);
+              document.getElementById("admin-owner-phone").value = "";
+              self.persist();
+              self.render();
+              showToast("Owner Phone Number updated (salted hash saved)!", "success");
+            } else if (type === "admin-update-pin") {
+              var newPinVal = document.getElementById("admin-new-pin").value.trim();
+              if (!/^\d{4,6}$/.test(newPinVal)) {
+                showToast("Admin PIN must be 4 to 6 numeric digits.", "error");
+                return;
+              }
+              self.data.adminConfig.pinHash = hashPin(newPinVal);
+              document.getElementById("admin-new-pin").value = "";
+              self.persist();
+              self.render();
+              showToast("Admin PIN updated (salted hash saved)!", "success");
+            } else if (type === "admin-links-cloud") {
+              var yt = safeUrl(document.getElementById("admin-yt-url").value.trim());
+              var tg = safeUrl(document.getElementById("admin-tg-url").value.trim());
+              var wa = safeUrl(document.getElementById("admin-wa-url").value.trim());
+              var ga4 = document.getElementById("admin-ga4-id").value.trim().slice(0, 30);
+              var cEnd = safeUrl(document.getElementById("admin-cloud-endpoint").value.trim());
+              var cKey = document.getElementById("admin-cloud-key").value.trim().slice(0, 120);
+
+              self.data.adminConfig.socialLinks = {
+                youtube: yt || self.data.adminConfig.socialLinks.youtube,
+                telegram: tg || self.data.adminConfig.socialLinks.telegram,
+                whatsapp: wa || self.data.adminConfig.socialLinks.whatsapp
+              };
+              self.data.adminConfig.ga4Id = ga4;
+              self.data.adminConfig.cloudEndpoint = cEnd;
+              self.data.adminConfig.cloudKey = cKey;
+              self.persist();
+              self.render();
+              showToast("Social Links & Cloud settings saved!", "success");
+            }
+          });
+        },
+
+        /* ===================================================================
+         * 11. RENDER ORCHESTRATOR
+         * =================================================================== */
+        render: function () {
+          var prof = this.data.profile || { name: "Guest Aspirant" };
+          var initial = (prof.name || "G").charAt(0).toUpperCase();
+          document.getElementById("header-user-name").textContent = prof.name;
+          document.getElementById("header-user-avatar").textContent = initial;
+          document.getElementById("sidebar-user-name").textContent = prof.name;
+          document.getElementById("sidebar-user-avatar").textContent = initial;
+          document.getElementById("sidebar-user-sub").textContent = "Target NEET " + (prof.targetYear || "2027") + " • Backup & Profile";
+
+          this.renderSidebar();
+
+          var main = document.getElementById("main-content");
+          var r = this.ui.route;
+          var f = this.data.adminConfig.features;
+
+          if (r === "subject") {
+            main.innerHTML = Views.subjectList();
+          } else if (r === "chapter") {
+            main.innerHTML = Views.chapterWorkspace();
+          } else if (r === "backlog" && f.backlogTracker) {
+            main.innerHTML = Views.autoBacklog();
+          } else if (r === "charts" && f.subjectCharts) {
+            main.innerHTML = Views.subjectCharts();
+          } else if (r === "habits" && f.habitMaker) {
+            main.innerHTML = Views.habitMaker();
+          } else if (r === "tests" && f.mockTests) {
+            main.innerHTML = Views.mockTests();
+          } else if (r === "share" && f.shareCard) {
+            main.innerHTML = Views.shareCard();
+          } else if (r === "support" && f.contactAdmin) {
+            main.innerHTML = Views.contactAdmin();
+          } else if (r === "profile") {
+            main.innerHTML = Views.profileBackup();
+          } else if (r === "admin" && this.ui.adminUnlocked) {
+            main.innerHTML = Views.adminConsole();
+          } else {
+            main.innerHTML = Views.home();
+          }
+        },
+
+        renderSidebar: function () {
+          var overall = this.computeOverallMetrics();
+          var f = this.data.adminConfig.features;
+          var streak = this.getTopHabitStreak();
+          var unresolved = (this.data.supportTickets || []).filter(function (t) { return !t.resolved; }).length;
+
+          var items = [
+            { id: "home", label: "Subjects & Syllabus", badge: overall.syllabusPct + "%" }
+          ];
+          if (f.backlogTracker) {
+            items.push({
+              id: "backlog",
+              label: "Auto-Backlog Tracker",
+              badge: overall.backlogList.length > 0 ? String(overall.backlogList.length) : null,
+              badgeCls: "bg-rose-100 text-rose-700 dark:bg-rose-950 dark:text-rose-300"
+            });
+          }
+          if (f.subjectCharts) {
+            items.push({ id: "charts", label: "Subject Pie Charts", badge: null });
+          }
+          if (f.habitMaker) {
+            items.push({
+              id: "habits",
+              label: "Habit & Streak Maker",
+              badge: streak > 0 ? streak + "d" : null,
+              badgeCls: "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300"
+            });
+          }
+          if (f.mockTests) {
+            items.push({ id: "tests", label: "Mock Test Score Log", badge: null });
+          }
+          if (f.shareCard) {
+            items.push({ id: "share", label: "Share Progress Card", badge: null });
+          }
+          if (f.contactAdmin) {
+            items.push({ id: "support", label: "Facing Issue? Contact Admin", badge: null });
+          }
+          if (this.ui.adminUnlocked) {
+            items.push({
+              id: "admin",
+              label: "Owner Admin Console",
+              badge: unresolved > 0 ? String(unresolved) : "ON",
+              badgeCls: "bg-indigo-100 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300"
+            });
+          }
+
+          var cur = this.ui.route;
+          document.getElementById("sidebar-nav-list").innerHTML = items.map(function (it) {
+            var active = cur === it.id || (it.id === "home" && (cur === "subject" || cur === "chapter"));
+            return '<button type="button" data-action="navigate" data-route="' + it.id + '" class="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all ' +
+              (active
+                ? "bg-slate-900 text-white dark:bg-indigo-600 dark:text-white"
+                : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#111827]") + '">' +
+              '<span>' + esc(it.label) + '</span>' +
+              (it.badge ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold ' + (it.badgeCls || (active ? "bg-white/20 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300")) + '">' + esc(it.badge) + '</span>' : '') +
+            '</button>';
+          }).join("");
+
+          var links = this.data.adminConfig.socialLinks || {};
+          var socials = [
+            { name: "YouTube (@medicusminds_official)", url: safeUrl(links.youtube) || "https://www.youtube.com/@medicusminds_official", dot: "bg-rose-500" },
+            { name: "Telegram Channel", url: safeUrl(links.telegram) || "https://t.me/", dot: "bg-sky-500" },
+            { name: "WhatsApp Channel", url: safeUrl(links.whatsapp) || "https://whatsapp.com/", dot: "bg-emerald-500" }
+          ];
+          document.getElementById("sidebar-social-links").innerHTML = socials.map(function (s) {
+            return '<a href="' + esc(s.url) + '" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between px-3 py-2 rounded-xl bg-slate-50 dark:bg-[#111827] border border-slate-200/80 dark:border-white/10 hover:border-indigo-500/40 transition-colors text-xs font-medium text-slate-700 dark:text-slate-200">' +
+              '<span class="flex items-center gap-2 truncate"><span class="w-2 h-2 rounded-full ' + s.dot + ' shrink-0"></span><span class="truncate">' + esc(s.name) + '</span></span>' +
+              '<span class="text-slate-400 text-xs">↗</span>' +
+            '</a>';
+          }).join("");
+        }
+      };
+
+      /* =====================================================================
+       * 12. ALL VIEWS (CLEAN, MINIMALIST, UNIVERSAL ← BACK BUTTON)
+       * ===================================================================== */
+      var Views = {
+        backBar: function (label) {
+          return '<div class="mb-4">' +
+            '<button type="button" data-action="go-back" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 hover:border-indigo-500/50 text-slate-700 dark:text-slate-200 transition-colors">' +
+              '<span>←</span>' +
+              '<span>' + esc(label || "Back") + '</span>' +
+            '</button>' +
+          '</div>';
+        },
+
+        accentTokens: function (color) {
+          var map = {
+            indigo: { bar: "bg-indigo-600 dark:bg-indigo-500", badge: "bg-indigo-50 text-indigo-700 dark:bg-indigo-950/90 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-800/60", glow: "glow-indigo" },
+            emerald: { bar: "bg-emerald-600 dark:bg-emerald-500", badge: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/90 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60", glow: "glow-emerald" },
+            amber: { bar: "bg-amber-500", badge: "bg-amber-50 text-amber-700 dark:bg-amber-950/90 dark:text-amber-300 border border-amber-200/60 dark:border-amber-800/60", glow: "glow-amber" },
+            violet: { bar: "bg-violet-600 dark:bg-violet-500", badge: "bg-violet-50 text-violet-700 dark:bg-violet-950/90 dark:text-violet-300 border border-violet-200/60 dark:border-violet-800/60", glow: "glow-violet" }
+          };
+          return map[color] || map.violet;
+        },
+
+        // LEVEL 1: HOME FRONT PAGE
+        home: function () {
+          var self = this;
+          var cfg = App.data.adminConfig;
+          var f = cfg.features;
+          var ec = App.getExamCountdownStats();
+          var subjects = App.getAllSubjects();
+
+          var noticeHtml = (cfg.notice && cfg.notice.active && cfg.notice.text) ? (
+            '<div class="mb-5 rounded-2xl bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 px-4 py-3 flex items-center gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-200">' +
+              '<span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-300 shrink-0">Notice</span>' +
+              '<span>' + esc(cfg.notice.text) + '</span>' +
+            '</div>'
+          ) : "";
+
+          var sponsorUrl = safeUrl(cfg.sponsor && cfg.sponsor.linkUrl);
+          var sponsorHtml = (cfg.sponsor && cfg.sponsor.active && cfg.sponsor.title) ? (
+            '<div class="mt-7 rounded-2xl bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">' +
+              '<div class="space-y-1">' +
+                '<span class="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-300">Featured</span>' +
+                '<h3 class="text-sm font-bold text-slate-900 dark:text-white">' + esc(cfg.sponsor.title) + '</h3>' +
+                (cfg.sponsor.subtitle ? '<p class="text-xs text-slate-500 dark:text-slate-400">' + esc(cfg.sponsor.subtitle) + '</p>' : '') +
+              '</div>' +
+              (sponsorUrl ? '<a href="' + esc(sponsorUrl) + '" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90 shrink-0 text-center">' + esc(cfg.sponsor.ctaText || "Explore →") + '</a>' : '') +
+            '</div>'
+          ) : "";
+
+          var daysText = ec.daysLeft > 0 ? (ec.daysLeft + " Days Left") : (ec.daysLeft === 0 ? "Exam Day Today!" : "Exam Completed");
+          var countdownHtml = f.examCountdown ? (
+            '<div class="mb-5 rounded-2xl bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 p-4 sm:p-5">' +
+              '<div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">' +
+                '<div class="flex items-center gap-2 min-w-0">' +
+                  '<span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-300 shrink-0">Exam Countdown</span>' +
+                  '<span class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white truncate">' + esc(ec.label) + '</span>' +
+                '</div>' +
+                '<div class="flex items-center gap-2.5 shrink-0">' +
+                  '<span class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300 border border-indigo-200/70 dark:border-indigo-800/60">' + esc(daysText) + '</span>' +
+                  '<button type="button" data-action="open-modal" data-modal="modal-exam-countdown" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Set Dates</button>' +
+                '</div>' +
+              '</div>' +
+              '<div class="w-full h-1.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden mb-2">' +
+                '<div class="h-full rounded-full bg-indigo-600 dark:bg-indigo-500 transition-all duration-300" style="width:' + ec.timelinePct + '%"></div>' +
+              '</div>' +
+              '<div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">' +
+                '<span>Prep Start: <strong class="text-slate-700 dark:text-slate-200">' + esc(ec.formattedStart) + '</strong> (' + ec.elapsed + 'd done)</span>' +
+                '<span>Target Exam: <strong class="text-slate-700 dark:text-slate-200">' + esc(ec.formattedExam) + '</strong></span>' +
+              '</div>' +
+            '</div>'
+          ) : "";
+
+          var dg = App.data.dailyGoal || { target: 60, solvedToday: 0 };
+          var dgPct = dg.target > 0 ? Math.min(100, Math.round((dg.solvedToday / dg.target) * 100)) : 0;
+          var dailyBarHtml = f.dailyTarget ? (
+            '<div class="mb-5 rounded-2xl bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 px-4 py-3.5">' +
+              '<div class="flex items-center justify-between gap-2 mb-2">' +
+                '<div class="flex items-center gap-2 text-xs">' +
+                  '<span class="font-semibold text-slate-700 dark:text-slate-200">Today\'s Question Target</span>' +
+                  '<span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">' + dg.solvedToday + ' / ' + dg.target + ' Qs (' + dgPct + '%)</span>' +
+                '</div>' +
+                '<button type="button" data-action="open-modal" data-modal="modal-daily-target" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">Edit Goal</button>' +
+              '</div>' +
+              '<div class="w-full h-1.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">' +
+                '<div class="h-full rounded-full bg-emerald-500 transition-all" style="width:' + dgPct + '%"></div>' +
+              '</div>' +
+            '</div>'
+          ) : "";
+
+          var cardsHtml = subjects.map(function (subj) {
+            var m = App.computeSubjectMetrics(subj.id);
+            var tok = self.accentTokens(subj.color);
+            return (
+              '<button type="button" data-action="navigate" data-route="subject" data-id="' + esc(subj.id) + '" class="group text-left bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 ' + tok.glow + ' rounded-2xl p-6 transition-all duration-200 flex flex-col justify-between min-h-[195px]">' +
+                '<div>' +
+                  '<div class="flex items-center justify-between gap-2 mb-3">' +
+                    '<div class="flex items-center gap-2">' +
+                      '<span class="text-lg">' + esc(subj.icon || "📘") + '</span>' +
+                      '<span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold ' + tok.badge + '">' + m.overallPct + '% Progress</span>' +
+                    '</div>' +
+                    '<span class="text-slate-400 group-hover:text-slate-800 dark:group-hover:text-white transform group-hover:translate-x-0.5 transition-all text-base font-semibold">→</span>' +
+                  '</div>' +
+                  '<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">' + esc(subj.name) + '</h2>' +
+                  '<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">' + esc(subj.subtitle) + '</p>' +
+                '</div>' +
+                '<div class="mt-6 pt-4 border-t border-slate-100 dark:border-white/10">' +
+                  '<div class="w-full h-1.5 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden mb-2.5">' +
+                    '<div class="h-full rounded-full ' + tok.bar + ' transition-all duration-300" style="width:' + m.overallPct + '%"></div>' +
+                  '</div>' +
+                  '<div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">' +
+                    '<span><strong class="text-slate-800 dark:text-slate-200">' + m.completedChapters + '/' + m.totalChapters + '</strong> Done</span>' +
+                    (m.backlogChapters > 0
+                      ? '<span class="text-rose-600 dark:text-rose-400 font-semibold">' + m.backlogChapters + ' Auto-Backlog</span>'
+                      : '<span><strong class="text-slate-800 dark:text-slate-200">' + m.solvedQs + '</strong> Qs Solved</span>') +
+                  '</div>' +
+                '</div>' +
+              '</button>'
+            );
+          }).join("");
+
+          return (
+            '<div>' +
+              noticeHtml +
+              '<div class="mb-5">' +
+                '<h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Subjects</h1>' +
+                '<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Select a subject to track classes, NCERT reading, revisions, and module exercises.</p>' +
+              '</div>' +
+              countdownHtml +
+              dailyBarHtml +
+              '<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">' +
+                cardsHtml +
+                '<button type="button" data-action="open-modal" data-modal="modal-add-subject" class="group text-left bg-transparent border-2 border-dashed border-slate-200 dark:border-white/10 hover:border-indigo-500/60 rounded-2xl p-6 transition-all flex flex-col items-center justify-center text-center min-h-[195px]">' +
+                  '<div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-[#111827] text-slate-600 dark:text-slate-300 group-hover:bg-indigo-600 group-hover:text-white flex items-center justify-center transition-colors mb-3 text-lg font-bold">+</div>' +
+                  '<span class="text-sm font-semibold text-slate-700 dark:text-slate-200">Add Custom Subject</span>' +
+                  '<span class="text-xs text-slate-400 dark:text-slate-500 mt-1">Create a new subject tracker</span>' +
+                '</button>' +
+              '</div>' +
+              sponsorHtml +
+            '</div>'
+          );
+        },
+
+        // LEVEL 2: SUBJECT CHAPTER LIST
+        subjectList: function () {
+          var subject = App.getAllSubjects().find(function (s) { return s.id === App.ui.activeSubjectId; });
+          if (!subject) return this.home();
+
+          var stats = App.computeSubjectMetrics(subject.id);
+          var allSubChapters = App.getAllChapters().filter(function (c) { return c.subjectId === subject.id; });
+          var clsFilter = App.ui.classFilter;
+          var stFilter = App.ui.statusFilter;
+
+          var filtered = allSubChapters.filter(function (c) {
+            if (clsFilter !== "all" && c.cls !== clsFilter) return false;
+            var m = App.computeChapterMetrics(c.id);
+            if (stFilter === "pending") return !m.ch.classDone;
+            if (stFilter === "completed") return m.ch.classDone && m.practiceComplete;
+            if (stFilter === "backlog") return m.isAutoBacklog;
+            return true;
+          });
+
+          var renderSection = function (list, label, startNum) {
+            if (!list.length) return "";
+            return (
+              '<div class="mb-7">' +
+                '<div class="flex items-center justify-between mb-3">' +
+                  '<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">' + esc(label) + '</h3>' +
+                  '<span class="text-xs text-slate-400 dark:text-slate-500">' + list.length + ' Chapters</span>' +
+                '</div>' +
+                '<div class="space-y-2.5">' +
+                  list.map(function (ch, idx) {
+                    var m = App.computeChapterMetrics(ch.id);
+                    var st = m.ch;
+                    var revTag = st.r3 ? "R3" : (st.r2 ? "R2" : (st.r1 ? "R1" : null));
+                    return (
+                      '<button type="button" data-action="navigate" data-route="chapter" data-id="' + esc(ch.id) + '" class="group w-full text-left bg-white dark:bg-[#111827] glass-card border ' + (m.isAutoBacklog ? "border-rose-300 dark:border-rose-800/80" : "border-slate-200 dark:border-white/10") + ' hover:border-indigo-500/50 rounded-2xl px-4 py-3.5 sm:px-5 sm:py-4 transition-all flex items-center justify-between gap-3">' +
+                        '<div class="flex items-center gap-3.5 min-w-0">' +
+                          '<span class="text-xs font-mono font-semibold text-slate-400 dark:text-slate-500 w-5 shrink-0">' + String(startNum + idx).padStart(2, "0") + '</span>' +
+                          '<div class="min-w-0">' +
+                            '<div class="text-sm font-semibold text-slate-900 dark:text-slate-100 leading-snug truncate">' + esc(ch.title) + '</div>' +
+                            '<div class="flex flex-wrap items-center gap-1.5 mt-1.5">' +
+                              (st.classDone ? '<span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">Class Done ✓</span>' : '') +
+                              (st.ncertRead ? '<span class="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">NCERT ✓</span>' : '') +
+                              (revTag ? '<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200">' + revTag + '</span>' : '') +
+                              (m.isAutoBacklog ? '<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-rose-50 text-rose-600 dark:bg-rose-950 dark:text-rose-300">Auto-Backlog</span>' : '') +
+                              '<span class="px-2 py-0.5 rounded-md text-[10px] font-medium bg-slate-50 text-slate-500 dark:bg-slate-800/70 dark:text-slate-400">' + m.doneQs + '/' + m.totalQs + ' Qs</span>' +
+                            '</div>' +
+                          '</div>' +
+                        '</div>' +
+                        '<div class="flex items-center gap-2.5 shrink-0">' +
+                          '<span class="text-xs font-bold text-slate-500 dark:text-slate-400">' + m.pct + '%</span>' +
+                          '<span class="text-slate-400 group-hover:text-slate-800 dark:group-hover:text-white transform group-hover:translate-x-0.5 transition-all text-base font-semibold">›</span>' +
+                        '</div>' +
+                      '</button>'
+                    );
+                  }).join("") +
+                '</div>' +
+              '</div>'
+            );
+          };
+
+          var listHtml = "";
+          if (clsFilter === "all") {
+            var c11 = filtered.filter(function (c) { return c.cls === "11"; });
+            var c12 = filtered.filter(function (c) { return c.cls === "12"; });
+            listHtml = renderSection(c11, "Class 11th Sequence", 1) + renderSection(c12, "Class 12th Sequence", c11.length + 1);
+            if (!c11.length && !c12.length) {
+              listHtml = '<div class="rounded-2xl border border-dashed border-slate-200 dark:border-white/10 p-10 text-center text-xs text-slate-500">No chapters match the selected filter.</div>';
+            }
+          } else {
+            var c11Count = allSubChapters.filter(function (c) { return c.cls === "11"; }).length;
+            var start = clsFilter === "12" ? c11Count + 1 : 1;
+            var heading = clsFilter === "11" ? "Class 11th Chapters" : "Class 12th Chapters";
+            listHtml = filtered.length
+              ? renderSection(filtered, heading, start)
+              : '<div class="rounded-2xl border border-dashed border-slate-200 dark:border-white/10 p-10 text-center text-xs text-slate-500">No chapters match the selected filter.</div>';
+          }
+
+          return (
+            '<div>' +
+              this.backBar("Back to Subjects") +
+              '<div class="flex flex-wrap items-center justify-between gap-3 mb-5">' +
+                '<div>' +
+                  '<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">' + esc(subject.icon || "") + ' ' + esc(subject.name) + '</h1>' +
+                  '<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">' +
+                    stats.overallPct + '% Overall • ' + stats.completedChapters + '/' + stats.totalChapters + ' Completed • ' + stats.backlogChapters + ' Auto-Backlog' +
+                  '</p>' +
+                '</div>' +
+                '<button type="button" data-action="open-modal" data-modal="modal-add-chapter" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">' +
+                  '+ Add Chapter' +
+                '</button>' +
+              '</div>' +
+
+              '<div class="flex flex-wrap items-center justify-between gap-2 mb-5">' +
+                '<div class="flex items-center gap-1.5 overflow-x-auto">' +
+                  [
+                    { id: "all", label: "All" },
+                    { id: "11", label: "Class 11th" },
+                    { id: "12", label: "Class 12th" }
+                  ].map(function (t) {
+                    return '<button type="button" data-action="set-class-filter" data-filter="' + t.id + '" class="px-3.5 py-2 rounded-xl text-xs font-semibold border transition-all ' +
+                      (clsFilter === t.id
+                        ? "bg-slate-900 text-white border-slate-900 dark:bg-indigo-600 dark:text-white dark:border-indigo-600"
+                        : "bg-white dark:bg-[#111827] text-slate-600 dark:text-slate-300 border-slate-200 dark:border-white/10") + '">' +
+                      t.label +
+                    '</button>';
+                  }).join("") +
+                '</div>' +
+                '<div class="flex items-center gap-1.5 overflow-x-auto">' +
+                  [
+                    { id: "all", label: "All" },
+                    { id: "pending", label: "Pending" },
+                    { id: "completed", label: "Completed" },
+                    { id: "backlog", label: "Auto-Backlog" }
+                  ].map(function (s) {
+                    return '<button type="button" data-action="set-status-filter" data-filter="' + s.id + '" class="px-3 py-1.5 rounded-xl text-[11px] font-semibold border transition-all ' +
+                      (stFilter === s.id
+                        ? "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950 dark:text-indigo-300 dark:border-indigo-800"
+                        : "bg-white dark:bg-[#111827] text-slate-500 dark:text-slate-400 border-slate-200 dark:border-white/10") + '">' +
+                      s.label +
+                    '</button>';
+                  }).join("") +
+                '</div>' +
+              '</div>' +
+
+              listHtml +
+            '</div>'
+          );
+        },
+
+        // LEVEL 3: CHAPTER WORKSPACE (WITH SMART AUTO-BACKLOG)
+        chapterWorkspace: function () {
+          var all = App.getAllChapters();
+          var ch = all.find(function (c) { return c.id === App.ui.activeChapterId; });
+          if (!ch) return this.subjectList();
+
+          var subject = App.getAllSubjects().find(function (s) { return s.id === ch.subjectId; }) || { name: "Subject" };
+          var subChapters = all.filter(function (c) { return c.subjectId === ch.subjectId; });
+          var idx = subChapters.findIndex(function (c) { return c.id === ch.id; });
+          var prevCh = idx > 0 ? subChapters[idx - 1] : null;
+          var nextCh = idx >= 0 && idx < subChapters.length - 1 ? subChapters[idx + 1] : null;
+
+          var m = App.computeChapterMetrics(ch.id);
+          var st = m.ch;
+          var f = App.data.adminConfig.features;
+
+          var statusPillHtml = m.isAutoBacklog
+            ? '<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-50 text-rose-700 dark:bg-rose-950/90 dark:text-rose-300 border border-rose-200 dark:border-rose-800">Auto-Backlog: Pending Question Practice (' + m.pendingQs + ' Qs left)</span>'
+            : (m.practiceComplete
+              ? '<span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950/90 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">Question Practice Complete ✓</span>'
+              : '<span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">Class Not Completed Yet</span>');
+
+          var exercisesHtml = st.exercises.map(function (ex) {
+            var exPct = ex.total > 0 ? Math.min(100, Math.round((ex.done / ex.total) * 100)) : 0;
+            return (
+              '<div class="rounded-xl bg-slate-50/80 dark:bg-[#0A0F1A] border border-slate-200/80 dark:border-white/10 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5">' +
+                '<div class="flex-1 min-w-0">' +
+                  '<div class="flex items-center gap-2">' +
+                    '<button type="button" data-action="toggle-ex-complete" data-ch="' + esc(ch.id) + '" data-ex="' + esc(ex.id) + '" class="px-2.5 py-1 rounded-lg text-[11px] font-bold border transition-colors ' +
+                      (ex.completed
+                        ? "bg-emerald-600 text-white border-emerald-600"
+                        : "bg-white dark:bg-[#111827] text-slate-600 dark:text-slate-300 border-slate-200 dark:border-white/10 hover:border-emerald-500") + '">' +
+                      (ex.completed ? "Completed ✓" : "Mark Complete") +
+                    '</button>' +
+                    '<span class="text-sm font-semibold text-slate-900 dark:text-slate-100 truncate">' + esc(ex.name) + '</span>' +
+                    (ex.isCustom ? '<button type="button" data-action="delete-exercise" data-ch="' + esc(ch.id) + '" data-ex="' + esc(ex.id) + '" class="text-xs text-rose-500 hover:text-rose-600 px-1.5" title="Delete exercise">✕</button>' : '') +
+                  '</div>' +
+                  '<div class="flex items-center gap-2.5 mt-2.5">' +
+                    '<div class="flex-1 max-w-[200px] h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">' +
+                      '<div class="h-full rounded-full bg-emerald-500 transition-all" style="width:' + exPct + '%"></div>' +
+                    '</div>' +
+                    '<span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400">' + exPct + '%</span>' +
+                  '</div>' +
+                '</div>' +
+
+                '<div class="flex items-center gap-2.5 self-end sm:self-center">' +
+                  '<div class="flex flex-col items-center">' +
+                    '<span class="text-[10px] font-semibold text-slate-400 mb-1">Solved</span>' +
+                    '<div class="flex items-center gap-1">' +
+                      '<button type="button" data-action="step-ex" data-ch="' + esc(ch.id) + '" data-ex="' + esc(ex.id) + '" data-field="done" data-delta="-1" class="w-7 h-8 rounded-lg bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 text-xs font-bold">-</button>' +
+                      '<input type="number" min="0" max="5000" value="' + ex.done + '" data-ex-input="done" data-ch="' + esc(ch.id) + '" data-ex="' + esc(ex.id) + '" class="w-14 py-1.5 rounded-lg text-xs font-bold text-center bg-emerald-50/70 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/70 text-emerald-700 dark:text-emerald-300 focus:outline-none" />' +
+                      '<button type="button" data-action="step-ex" data-ch="' + esc(ch.id) + '" data-ex="' + esc(ex.id) + '" data-field="done" data-delta="1" class="w-7 h-8 rounded-lg bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 text-xs font-bold">+</button>' +
+                    '</div>' +
+                  '</div>' +
+                  '<span class="text-slate-400 font-bold mt-4">/</span>' +
+                  '<div class="flex flex-col items-center">' +
+                    '<span class="text-[10px] font-semibold text-slate-400 mb-1">Total</span>' +
+                    '<div class="flex items-center gap-1">' +
+                      '<button type="button" data-action="step-ex" data-ch="' + esc(ch.id) + '" data-ex="' + esc(ex.id) + '" data-field="total" data-delta="-5" class="w-7 h-8 rounded-lg bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 text-xs font-bold">-</button>' +
+                      '<input type="number" min="1" max="5000" value="' + ex.total + '" data-ex-input="total" data-ch="' + esc(ch.id) + '" data-ex="' + esc(ex.id) + '" class="w-14 py-1.5 rounded-lg text-xs font-bold text-center bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-slate-200 focus:outline-none" />' +
+                      '<button type="button" data-action="step-ex" data-ch="' + esc(ch.id) + '" data-ex="' + esc(ex.id) + '" data-field="total" data-delta="5" class="w-7 h-8 rounded-lg bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 text-xs font-bold">+</button>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>'
+            );
+          }).join("");
+
+          var confidenceHtml = f.confidenceRating ? (
+            '<div class="pt-4 border-t border-slate-100 dark:border-white/10 flex flex-wrap items-center justify-between gap-2">' +
+              '<span class="text-xs font-semibold text-slate-500 dark:text-slate-400">Confidence Level:</span>' +
+              '<div class="flex items-center gap-2">' +
+                [
+                  { id: "low", label: "Low", active: "bg-amber-600 text-white border-amber-600" },
+                  { id: "medium", label: "Medium", active: "bg-slate-800 text-white border-slate-800 dark:bg-slate-700" },
+                  { id: "high", label: "High", active: "bg-sky-600 text-white border-sky-600" }
+                ].map(function (lv) {
+                  return '<button type="button" data-action="set-confidence" data-ch="' + esc(ch.id) + '" data-level="' + lv.id + '" class="px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ' +
+                    (st.confidence === lv.id ? lv.active : "bg-slate-50 dark:bg-[#0D1322] text-slate-500 border-slate-200 dark:border-white/10") + '">' + lv.label + '</button>';
+                }).join("") +
+              '</div>' +
+            '</div>'
+          ) : "";
+
+          var tState = App.ui.timer;
+          var tM = Math.floor(tState.remainingSeconds / 60);
+          var tS = tState.remainingSeconds % 60;
+          var timerHtml = f.focusTimer ? (
+            '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 mb-5">' +
+              '<div class="flex items-center justify-between mb-3">' +
+                '<h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chapter Focus Timer</h2>' +
+                '<div class="flex items-center gap-1.5">' +
+                  [25, 50].map(function (pm) {
+                    return '<button type="button" data-action="timer-preset" data-mins="' + pm + '" class="px-2.5 py-1 rounded-lg text-[11px] font-bold border ' +
+                      (tState.presetMinutes === pm ? "bg-indigo-600 text-white border-indigo-600" : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300") + '">' + pm + 'm</button>';
+                  }).join("") +
+                '</div>' +
+              '</div>' +
+              '<div class="flex items-center justify-between gap-3 bg-slate-50 dark:bg-[#0A0F1A] border border-slate-200/80 dark:border-white/10 rounded-xl px-4 py-3">' +
+                '<div id="chapter-timer-clock" class="text-2xl font-mono font-extrabold text-slate-900 dark:text-white">' + String(tM).padStart(2, "0") + ':' + String(tS).padStart(2, "0") + '</div>' +
+                '<div class="flex items-center gap-2">' +
+                  (!tState.running
+                    ? '<button type="button" data-action="timer-start" data-ch="' + esc(ch.id) + '" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-emerald-600 text-white">Start</button>'
+                    : '<button type="button" data-action="timer-pause" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-amber-600 text-white">Pause</button>') +
+                  '<button type="button" data-action="timer-reset" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10">Reset</button>' +
+                '</div>' +
+              '</div>' +
+            '</div>'
+          ) : "";
+
+          var notesHtml = f.chapterNotes ? (
+            '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 mb-5">' +
+              '<label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Formula & Key NCERT Notes</label>' +
+              '<textarea data-chapter-notes="1" data-ch="' + esc(ch.id) + '" rows="3" maxlength="1500" placeholder="Write formulas or key NCERT lines here..." class="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm bg-slate-50 dark:bg-[#0A0F1A] border border-slate-200 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500">' + esc(st.notes) + '</textarea>' +
+            '</div>'
+          ) : "";
+
+          return (
+            '<div class="max-w-3xl mx-auto">' +
+              this.backBar("Back to " + subject.name) +
+
+              '<div class="bg-white dark:bg-[#111827] glass-card border ' + (m.isAutoBacklog ? "border-rose-300 dark:border-rose-800/80" : "border-slate-200 dark:border-white/10") + ' rounded-2xl p-5 sm:p-6 mb-5">' +
+                '<div class="flex flex-wrap items-center gap-2 text-[11px] font-semibold text-slate-400 mb-2">' +
+                  '<span class="px-2.5 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">' + esc(subject.name) + '</span>' +
+                  '<span>•</span>' +
+                  '<span>Class ' + esc(ch.cls) + 'th</span>' +
+                  statusPillHtml +
+                '</div>' +
+
+                '<h1 class="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white leading-snug">' + esc(ch.title) + '</h1>' +
+
+                '<div class="mt-4 pt-4 border-t border-slate-100 dark:border-white/10">' +
+                  '<div class="flex items-center justify-between text-xs mb-1.5">' +
+                    '<span class="text-slate-500 dark:text-slate-400">Overall Chapter Progress</span>' +
+                    '<span class="font-bold text-slate-900 dark:text-white">' + m.pct + '% (' + m.doneQs + '/' + m.totalQs + ' Qs)</span>' +
+                  '</div>' +
+                  '<div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">' +
+                    '<div class="h-full rounded-full bg-indigo-600 dark:bg-indigo-500 transition-all duration-300" style="width:' + m.pct + '%"></div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+
+              '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 sm:p-6 mb-5 space-y-4">' +
+                '<h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Class, NCERT & Revision Status</h2>' +
+                '<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">' +
+                  '<div class="flex flex-wrap items-center gap-2.5">' +
+                    '<button type="button" data-action="toggle-flag" data-ch="' + esc(ch.id) + '" data-flag="classDone" class="px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-2 ' +
+                      (st.classDone
+                        ? "bg-emerald-50 border-emerald-200 text-emerald-700 dark:bg-emerald-950/80 dark:border-emerald-800 dark:text-emerald-300"
+                        : "bg-slate-50 dark:bg-[#0D1322] border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300") + '">' +
+                      '<span>' + (st.classDone ? "☑" : "☐") + '</span>' +
+                      '<span>Class Done</span>' +
+                    '</button>' +
+
+                    '<button type="button" data-action="toggle-flag" data-ch="' + esc(ch.id) + '" data-flag="ncertRead" class="px-4 py-2.5 rounded-xl text-xs font-semibold border transition-all flex items-center gap-2 ' +
+                      (st.ncertRead
+                        ? "bg-indigo-50 border-indigo-200 text-indigo-700 dark:bg-indigo-950/80 dark:border-indigo-800 dark:text-indigo-300"
+                        : "bg-slate-50 dark:bg-[#0D1322] border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300") + '">' +
+                      '<span>' + (st.ncertRead ? "☑" : "☐") + '</span>' +
+                      '<span>NCERT Read</span>' +
+                    '</button>' +
+                  '</div>' +
+
+                  '<div class="flex items-center gap-2">' +
+                    '<span class="text-xs font-medium text-slate-400 mr-1">Revisions:</span>' +
+                    ["r1", "r2", "r3"].map(function (rk, i) {
+                      return '<button type="button" data-action="toggle-flag" data-ch="' + esc(ch.id) + '" data-flag="' + rk + '" class="px-3.5 py-2 rounded-xl text-xs font-bold border transition-all ' +
+                        (st[rk]
+                          ? "bg-slate-900 text-white border-slate-900 dark:bg-indigo-600 dark:text-white dark:border-indigo-600"
+                          : "bg-slate-50 dark:bg-[#0D1322] text-slate-500 dark:text-slate-400 border-slate-200 dark:border-white/10") + '">' +
+                        'R' + (i + 1) +
+                      '</button>';
+                    }).join("") +
+                  '</div>' +
+                '</div>' +
+                confidenceHtml +
+              '</div>' +
+
+              timerHtml +
+
+              '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 sm:p-6 mb-5 space-y-4">' +
+                '<div class="flex items-center justify-between gap-3">' +
+                  '<div>' +
+                    '<h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Exercises & Question Practice</h2>' +
+                    '<p class="text-[11px] text-slate-400 mt-0.5">If Class Done is checked and exercises are incomplete, this chapter automatically enters Auto-Backlog.</p>' +
+                  '</div>' +
+                  '<button type="button" data-action="open-modal" data-modal="modal-add-exercise" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90 shrink-0">' +
+                    '+ Add Exercise' +
+                  '</button>' +
+                '</div>' +
+                '<div class="space-y-3">' +
+                  (exercisesHtml || '<div class="text-xs text-slate-400 py-4 text-center">No exercises yet. Click "+ Add Exercise" to add practice questions.</div>') +
+                '</div>' +
+              '</div>' +
+
+              notesHtml +
+
+              '<div class="flex items-center justify-between gap-3">' +
+                (prevCh
+                  ? '<button type="button" data-action="navigate" data-route="chapter" data-id="' + esc(prevCh.id) + '" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 hover:border-indigo-500/40 text-slate-700 dark:text-slate-200">← Prev Chapter</button>'
+                  : '<div></div>') +
+                (nextCh
+                  ? '<button type="button" data-action="navigate" data-route="chapter" data-id="' + esc(nextCh.id) + '" class="px-4 py-2.5 rounded-xl text-xs font-semibold bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 hover:border-indigo-500/40 text-slate-700 dark:text-slate-200">Next Chapter →</button>'
+                  : '<div></div>') +
+              '</div>' +
+            '</div>'
+          );
+        },
+
+        // AUTO-BACKLOG TRACKER VIEW
+        autoBacklog: function () {
+          var overall = App.computeOverallMetrics();
+          var subjects = App.getAllSubjects();
+
+          var groupedHtml = subjects.map(function (subj) {
+            var items = overall.backlogList.filter(function (x) { return x.chapter.subjectId === subj.id; });
+            if (!items.length) return "";
+            return (
+              '<div class="mb-6">' +
+                '<div class="flex items-center justify-between mb-3">' +
+                  '<h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">' + esc(subj.icon || "") + ' ' + esc(subj.name) + '</h2>' +
+                  '<span class="text-xs font-semibold text-rose-500">' + items.length + ' Pending</span>' +
+                '</div>' +
+                '<div class="space-y-2.5">' +
+                  items.map(function (item) {
+                    var ch = item.chapter;
+                    var m = item.metrics;
+                    return (
+                      '<div class="bg-white dark:bg-[#111827] glass-card border border-rose-200 dark:border-rose-900/70 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">' +
+                        '<div>' +
+                          '<div class="text-[11px] font-semibold text-slate-400 mb-0.5">Class ' + esc(ch.cls) + 'th • Class Done ✓</div>' +
+                          '<h3 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white">' + esc(ch.title) + '</h3>' +
+                          '<p class="text-xs text-rose-600 dark:text-rose-400 font-medium mt-1">' +
+                            (m.totalQs === 0 ? "No exercises added yet" : m.pendingQs + " questions remaining (" + m.doneQs + "/" + m.totalQs + " solved)") +
+                          '</p>' +
+                        '</div>' +
+                        '<button type="button" data-action="navigate" data-route="chapter" data-id="' + esc(ch.id) + '" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90 shrink-0 self-start sm:self-center">' +
+                          'Open Chapter →' +
+                        '</button>' +
+                      '</div>'
+                    );
+                  }).join("") +
+                '</div>' +
+              '</div>'
+            );
+          }).join("");
+
+          return (
+            '<div>' +
+              this.backBar("Back") +
+              '<div class="flex flex-wrap items-center justify-between gap-3 mb-6">' +
+                '<div>' +
+                  '<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Auto-Backlog Tracker</h1>' +
+                  '<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Automatically lists chapters where <strong>Class Done</strong> is checked but question practice is incomplete.</p>' +
+                '</div>' +
+                '<div class="px-4 py-2 rounded-2xl bg-rose-50 dark:bg-rose-950/70 border border-rose-200/80 dark:border-rose-900/70 text-right">' +
+                  '<div class="text-[10px] font-bold uppercase text-rose-600 dark:text-rose-400">Auto-Backlog</div>' +
+                  '<div class="text-lg font-extrabold text-rose-700 dark:text-rose-300">' + overall.backlogList.length + ' Chapters</div>' +
+                '</div>' +
+              '</div>' +
+
+              (overall.backlogList.length === 0
+                ? '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-10 text-center">' +
+                    '<div class="w-12 h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto mb-3 text-xl">✓</div>' +
+                    '<h3 class="text-base font-bold">Zero Auto-Backlog!</h3>' +
+                    '<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Every completed class has finished its question practice.</p>' +
+                  '</div>'
+                : groupedHtml) +
+            '</div>'
+          );
+        },
+
+        // SUBJECT PIE CHARTS VIEW
+        subjectCharts: function () {
+          var coreSubjects = DEFAULT_SUBJECTS;
+          var renderDonut = function (completed, inProgress, pending) {
+            var total = completed + inProgress + pending;
+            var r = 42;
+            var c = 2 * Math.PI * r;
+            if (total === 0) {
+              return '<svg class="w-32 h-32 -rotate-90" viewBox="0 0 100 100"><circle cx="50" cy="50" r="' + r + '" fill="none" stroke="currentColor" stroke-width="11" class="text-slate-200 dark:text-slate-800" /></svg>';
+            }
+            var l1 = (completed / total) * c;
+            var l2 = (inProgress / total) * c;
+            var l3 = (pending / total) * c;
+            return (
+              '<svg class="w-32 h-32 -rotate-90" viewBox="0 0 100 100">' +
+                '<circle cx="50" cy="50" r="' + r + '" fill="none" stroke="#10b981" stroke-width="11" stroke-dasharray="' + l1 + ' ' + c + '" stroke-dashoffset="0" />' +
+                '<circle cx="50" cy="50" r="' + r + '" fill="none" stroke="#f59e0b" stroke-width="11" stroke-dasharray="' + l2 + ' ' + c + '" stroke-dashoffset="-' + l1 + '" />' +
+                '<circle cx="50" cy="50" r="' + r + '" fill="none" stroke="#64748b" stroke-width="11" stroke-dasharray="' + l3 + ' ' + c + '" stroke-dashoffset="-' + (l1 + l2) + '" />' +
+              '</svg>'
+            );
+          };
+
+          return (
+            '<div>' +
+              this.backBar("Back") +
+              '<div class="mb-6">' +
+                '<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Subject Pie Charts</h1>' +
+                '<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Completed vs In-Progress vs Pending breakdown across Physics, Chemistry, and Biology.</p>' +
+              '</div>' +
+
+              '<div class="flex flex-wrap items-center gap-4 mb-6 text-xs font-medium text-slate-600 dark:text-slate-400">' +
+                '<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Completed</span>' +
+                '<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> In-Progress</span>' +
+                '<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-slate-500"></span> Pending</span>' +
+              '</div>' +
+
+              '<div class="grid grid-cols-1 md:grid-cols-3 gap-5">' +
+                coreSubjects.map(function (s) {
+                  var st = App.computeSubjectMetrics(s.id);
+                  return (
+                    '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 flex flex-col justify-between">' +
+                      '<div class="flex items-center justify-between mb-3">' +
+                        '<h3 class="text-base font-bold text-slate-900 dark:text-white">' + esc(s.icon) + ' ' + esc(s.name) + '</h3>' +
+                        '<span class="text-xs font-bold text-indigo-600 dark:text-indigo-400">' + st.overallPct + '%</span>' +
+                      '</div>' +
+                      '<div class="relative flex items-center justify-center my-4">' +
+                        renderDonut(st.completedChapters, st.inProgressChapters, st.pendingChapters) +
+                        '<div class="absolute inset-0 flex flex-col items-center justify-center">' +
+                          '<span class="text-lg font-extrabold text-slate-900 dark:text-white">' + st.completedChapters + '/' + st.totalChapters + '</span>' +
+                          '<span class="text-[10px] text-slate-400">Chapters</span>' +
+                        '</div>' +
+                      '</div>' +
+                      '<div class="grid grid-cols-3 gap-2 text-center pt-3 border-t border-slate-100 dark:border-white/10 text-xs">' +
+                        '<div><div class="font-bold text-emerald-500">' + st.completedChapters + '</div><div class="text-[10px] text-slate-400">Done</div></div>' +
+                        '<div><div class="font-bold text-amber-500">' + st.inProgressChapters + '</div><div class="text-[10px] text-slate-400">Active</div></div>' +
+                        '<div><div class="font-bold text-slate-400">' + st.pendingChapters + '</div><div class="text-[10px] text-slate-400">Pending</div></div>' +
+                      '</div>' +
+                    '</div>'
+                  );
+                }).join("") +
+              '</div>' +
+            '</div>'
+          );
+        },
+
+        // HABIT & STREAK MAKER VIEW
+        habitMaker: function () {
+          var habits = App.data.habits || [];
+          var now = new Date();
+          var targetMonth = new Date(now.getFullYear(), now.getMonth() + App.ui.habitMonthOffset, 1);
+          var year = targetMonth.getFullYear();
+          var month = targetMonth.getMonth();
+          var monthTitle = targetMonth.toLocaleDateString("en-IN", { month: "long", year: "numeric" });
+          var firstDay = targetMonth.getDay();
+          var daysCount = new Date(year, month + 1, 0).getDate();
+          var todayIso = DateUtil.todayStr();
+
+          var buildCal = function (hab) {
+            var blanks = Array(firstDay).fill("<div></div>").join("");
+            var cells = [];
+            for (var d = 1; d <= daysCount; d++) {
+              var iso = year + "-" + String(month + 1).padStart(2, "0") + "-" + String(d).padStart(2, "0");
+              var checked = !!(hab.dates && hab.dates[iso]);
+              var isToday = iso === todayIso;
+              var cls = checked
+                ? (hab.type === "quit" ? "bg-emerald-600 text-white border-emerald-600" : "bg-indigo-600 text-white border-indigo-600")
+                : "bg-slate-50 dark:bg-[#0D1322] text-slate-600 dark:text-slate-400 border-slate-200/80 dark:border-white/10 hover:border-indigo-500";
+              cells.push('<button type="button" data-action="toggle-habit-date" data-habit="' + esc(hab.id) + '" data-date="' + iso + '" class="h-8 rounded-lg text-[11px] font-semibold border transition-all ' + cls + (isToday ? " ring-2 ring-amber-400" : "") + '">' + d + '</button>');
+            }
+            return (
+              '<div class="grid grid-cols-7 gap-1.5 text-center text-[10px] font-bold text-slate-400 mb-1.5"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>' +
+              '<div class="grid grid-cols-7 gap-1.5">' + blanks + cells.join("") + '</div>'
+            );
+          };
+
+          return (
+            '<div>' +
+              this.backBar("Back") +
+              '<div class="flex flex-wrap items-center justify-between gap-3 mb-6">' +
+                '<div>' +
+                  '<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Habit & Streak Maker</h1>' +
+                  '<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Track daily Build (+) or Quit (-) habits with interactive monthly check-ins.</p>' +
+                '</div>' +
+                '<div class="flex items-center gap-2 bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-xl px-2.5 py-1.5 text-xs font-semibold">' +
+                  '<button type="button" data-action="habit-month" data-delta="-1" class="px-2 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">←</button>' +
+                  '<span class="min-w-[115px] text-center">' + esc(monthTitle) + '</span>' +
+                  '<button type="button" data-action="habit-month" data-delta="1" class="px-2 py-1 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">→</button>' +
+                '</div>' +
+              '</div>' +
+
+              '<form data-form="add-habit" class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-4 sm:p-5 mb-6 flex flex-col sm:flex-row gap-3">' +
+                '<select id="input-habit-type" class="px-3.5 py-2.5 rounded-xl text-xs font-bold bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700">' +
+                  '<option value="build">+ Build Habit</option>' +
+                  '<option value="quit">- Quit Habit</option>' +
+                '</select>' +
+                '<input id="input-habit-title" type="text" maxlength="100" required placeholder="e.g. Solve 50 Physics MCQs before 10 AM..." class="flex-1 px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />' +
+                '<button type="submit" class="px-5 py-2.5 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90 shrink-0">+ Add Habit</button>' +
+              '</form>' +
+
+              '<div class="grid grid-cols-1 md:grid-cols-2 gap-5">' +
+                habits.map(function (h) {
+                  var st = DateUtil.computeStreaks(h.dates);
+                  var doneToday = !!(h.dates && h.dates[todayIso]);
+                  return (
+                    '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 flex flex-col justify-between">' +
+                      '<div>' +
+                        '<div class="flex items-start justify-between gap-2 mb-3">' +
+                          '<div>' +
+                            '<span class="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold uppercase mb-1 ' +
+                              (h.type === "quit" ? "bg-rose-50 text-rose-600 dark:bg-rose-950 dark:text-rose-300" : "bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-300") + '">' +
+                              (h.type === "quit" ? "Quit Habit" : "Build Habit") +
+                            '</span>' +
+                            '<h3 class="text-base font-bold text-slate-900 dark:text-white">' + esc(h.title) + '</h3>' +
+                          '</div>' +
+                          '<button type="button" data-action="delete-habit" data-habit="' + esc(h.id) + '" class="p-1.5 text-slate-400 hover:text-rose-500 text-xs">✕</button>' +
+                        '</div>' +
+                        '<div class="flex items-center justify-between py-2.5 px-3 rounded-xl bg-slate-50 dark:bg-[#0A0F1A] border border-slate-100 dark:border-white/10 mb-4 text-xs">' +
+                          '<div class="flex items-center gap-3">' +
+                            '<span class="font-bold text-amber-500">🔥 ' + st.current + 'd Streak</span>' +
+                            '<span class="text-slate-400">Best: <strong class="text-slate-700 dark:text-slate-200">' + st.best + 'd</strong></span>' +
+                          '</div>' +
+                          '<button type="button" data-action="toggle-habit-date" data-habit="' + esc(h.id) + '" data-date="' + todayIso + '" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold ' +
+                            (doneToday ? "bg-emerald-600 text-white" : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-white/10") + '">' +
+                            (doneToday ? "Done Today ✓" : "Check In") +
+                          '</button>' +
+                        '</div>' +
+                      '</div>' +
+                      buildCal(h) +
+                    '</div>'
+                  );
+                }).join("") +
+              '</div>' +
+            '</div>'
+          );
+        },
+
+        // MOCK TEST SCORE LOG VIEW
+        mockTests: function () {
+          var tests = App.data.mockTests || [];
+          var todayIso = DateUtil.todayStr();
+          var best = tests.length ? Math.max.apply(null, tests.map(function (t) { return t.total; })) : 0;
+
+          var chartHtml = "";
+          if (tests.length >= 2) {
+            var w = 520;
+            var h = 140;
+            var px = 28;
+            var py = 20;
+            var iw = w - px * 2;
+            var ih = h - py * 2;
+            var pts = tests.map(function (t, i) {
+              return {
+                x: px + (i / (tests.length - 1)) * iw,
+                y: py + ih - (Math.min(720, Math.max(0, t.total)) / 720) * ih,
+                val: t.total
+              };
+            });
+            var poly = pts.map(function (p) { return p.x.toFixed(1) + "," + p.y.toFixed(1); }).join(" ");
+            chartHtml = (
+              '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 mb-6">' +
+                '<div class="flex items-center justify-between mb-3">' +
+                  '<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Score Trend (/720)</h3>' +
+                  '<span class="text-xs font-bold text-indigo-500">Highest: ' + best + '/720</span>' +
+                '</div>' +
+                '<svg viewBox="0 0 ' + w + ' ' + h + '" class="w-full h-36 overflow-visible">' +
+                  '<line x1="' + px + '" y1="' + py + '" x2="' + (w - px) + '" y2="' + py + '" stroke="currentColor" stroke-dasharray="3 3" class="text-slate-200 dark:text-slate-800" />' +
+                  '<line x1="' + px + '" y1="' + (py + ih) + '" x2="' + (w - px) + '" y2="' + (py + ih) + '" stroke="currentColor" class="text-slate-200 dark:text-slate-800" />' +
+                  '<polyline fill="none" stroke="#6366f1" stroke-width="3" stroke-linecap="round" points="' + poly + '" />' +
+                  pts.map(function (p) {
+                    return '<circle cx="' + p.x + '" cy="' + p.y + '" r="4.5" fill="#6366f1" />' +
+                      '<text x="' + p.x + '" y="' + (p.y - 9) + '" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" class="text-slate-700 dark:text-slate-200">' + p.val + '</text>';
+                  }).join("") +
+                '</svg>' +
+              '</div>'
+            );
+          }
+
+          return (
+            '<div>' +
+              this.backBar("Back") +
+              '<div class="mb-6">' +
+                '<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Mock Test Score Log</h1>' +
+                '<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Record NEET mock scores out of 720 with Physics, Chemistry, and Biology split.</p>' +
+              '</div>' +
+
+              '<form data-form="add-test" class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 mb-6 space-y-4">' +
+                '<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">' +
+                  '<div class="sm:col-span-2">' +
+                    '<label class="block text-[11px] font-semibold text-slate-500 mb-1">Test Name</label>' +
+                    '<input id="input-test-name" type="text" maxlength="80" required placeholder="e.g. Major Test 01" class="w-full px-3.5 py-2 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" />' +
+                  '</div>' +
+                  '<div>' +
+                    '<label class="block text-[11px] font-semibold text-slate-500 mb-1">Date</label>' +
+                    '<input id="input-test-date" type="date" value="' + todayIso + '" class="w-full px-3.5 py-2 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" />' +
+                  '</div>' +
+                '</div>' +
+                '<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">' +
+                  '<div><label class="block text-[11px] font-semibold text-indigo-500 mb-1">Total (/720) *</label><input id="input-test-total" type="number" min="0" max="720" required placeholder="625" class="w-full px-3 py-2 rounded-xl text-sm font-bold bg-indigo-50/50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800" /></div>' +
+                  '<div><label class="block text-[11px] font-semibold text-slate-500 mb-1">Physics (/180)</label><input id="input-test-phy" type="number" min="0" max="180" placeholder="155" class="w-full px-3 py-2 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                  '<div><label class="block text-[11px] font-semibold text-slate-500 mb-1">Chemistry (/180)</label><input id="input-test-chem" type="number" min="0" max="180" placeholder="160" class="w-full px-3 py-2 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                  '<div><label class="block text-[11px] font-semibold text-slate-500 mb-1">Biology (/360)</label><input id="input-test-bio" type="number" min="0" max="360" placeholder="310" class="w-full px-3 py-2 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                '</div>' +
+                '<div class="flex justify-end"><button type="submit" class="px-5 py-2.5 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">+ Log Score</button></div>' +
+              '</form>' +
+
+              chartHtml +
+
+              '<div class="space-y-2.5">' +
+                (tests.length === 0
+                  ? '<div class="bg-white dark:bg-[#111827] border border-dashed border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center text-xs text-slate-500">No mock tests logged yet.</div>'
+                  : tests.slice().reverse().map(function (t) {
+                      return (
+                        '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-4 flex items-center justify-between gap-3">' +
+                          '<div>' +
+                            '<div class="text-sm font-bold text-slate-900 dark:text-white">' + esc(t.name) + '</div>' +
+                            '<div class="text-[11px] text-slate-400 mt-0.5">' + esc(t.date) + ' • P: ' + (t.phy != null ? t.phy : "-") + ' | C: ' + (t.chem != null ? t.chem : "-") + ' | B: ' + (t.bio != null ? t.bio : "-") + '</div>' +
+                          '</div>' +
+                          '<div class="flex items-center gap-3">' +
+                            '<span class="px-3 py-1 rounded-xl text-sm font-extrabold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">' + t.total + ' / 720</span>' +
+                            '<button type="button" data-action="delete-test" data-test="' + esc(t.id) + '" class="p-1.5 text-slate-400 hover:text-rose-500 text-xs">✕</button>' +
+                          '</div>' +
+                        '</div>'
+                      );
+                    }).join("")) +
+              '</div>' +
+            '</div>'
+          );
+        },
+
+        // SHARE PROGRESS CARD VIEW
+        shareCard: function () {
+          var prof = App.data.profile;
+          var overall = App.computeOverallMetrics();
+          var ec = App.getExamCountdownStats();
+          var streak = App.getTopHabitStreak();
+
+          var summary = [
+            "MedicusMinds NEET — Preparation Scorecard",
+            "Aspirant: " + prof.name + " (NEET " + prof.targetYear + ")",
+            "Syllabus Progress: " + overall.syllabusPct + "% (" + overall.completedCount + "/" + overall.totalChapters + " Chapters)",
+            "Exam Countdown: " + (ec.daysLeft > 0 ? ec.daysLeft + " Days Left" : "Exam Day"),
+            "Habit Streak: " + streak + " Days",
+            "Tracked on MedicusMinds NEET • @medicusminds_official"
+          ].join("\n");
+
+          return (
+            '<div class="max-w-xl mx-auto">' +
+              this.backBar("Back") +
+              '<div class="mb-6">' +
+                '<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Share Progress Card</h1>' +
+                '<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Screenshot or copy your branded MedicusMinds NEET scorecard.</p>' +
+              '</div>' +
+
+              '<div class="rounded-3xl bg-gradient-to-br from-[#090D16] via-[#111827] to-[#1E1B4B] text-white p-6 sm:p-8 shadow-xl border border-white/10">' +
+                '<div class="flex items-center justify-between border-b border-white/10 pb-4 mb-5">' +
+                  '<div class="flex items-center gap-2.5">' +
+                    '<div class="w-8 h-8 rounded-xl bg-indigo-500 text-white font-extrabold text-sm flex items-center justify-center">M</div>' +
+                    '<div><div class="text-sm font-bold leading-none">MedicusMinds NEET</div><div class="text-[10px] text-indigo-300 uppercase mt-0.5">@medicusminds_official</div></div>' +
+                  '</div>' +
+                  '<span class="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-indigo-200">' + (ec.daysLeft > 0 ? ec.daysLeft + " Days Left" : "Target Reached") + '</span>' +
+                '</div>' +
+
+                '<div class="flex items-center justify-between mb-6">' +
+                  '<div><div class="text-xs text-slate-400">Aspirant</div><div class="text-xl font-bold mt-0.5">' + esc(prof.name) + '</div></div>' +
+                  '<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">🔥 ' + streak + 'd Streak</span>' +
+                '</div>' +
+
+                '<div class="grid grid-cols-3 gap-3 mb-6">' +
+                  '<div class="rounded-2xl bg-white/5 border border-white/10 p-3.5"><div class="text-[11px] text-slate-400">Syllabus</div><div class="text-xl font-extrabold text-indigo-300 mt-0.5">' + overall.syllabusPct + '%</div></div>' +
+                  '<div class="rounded-2xl bg-white/5 border border-white/10 p-3.5"><div class="text-[11px] text-slate-400">Completed</div><div class="text-xl font-extrabold text-emerald-400 mt-0.5">' + overall.completedCount + '/' + overall.totalChapters + '</div></div>' +
+                  '<div class="rounded-2xl bg-white/5 border border-white/10 p-3.5"><div class="text-[11px] text-slate-400">Auto-Backlog</div><div class="text-xl font-extrabold text-rose-400 mt-0.5">' + overall.backlogList.length + ' Ch</div></div>' +
+                '</div>' +
+
+                '<div class="space-y-2 mb-6">' +
+                  DEFAULT_SUBJECTS.map(function (s) {
+                    var st = App.computeSubjectMetrics(s.id);
+                    return '<div class="flex items-center justify-between text-xs bg-white/5 rounded-xl px-3.5 py-2.5">' +
+                      '<span class="font-semibold text-slate-200">' + esc(s.icon) + ' ' + esc(s.name) + '</span>' +
+                      '<span class="text-slate-300">' + st.overallPct + '% • <strong class="text-white">' + st.completedChapters + '/' + st.totalChapters + ' Done</strong></span>' +
+                    '</div>';
+                  }).join("") +
+                '</div>' +
+
+                '<div class="pt-4 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400">' +
+                  '<span>MedicusMinds NEET Tracker</span>' +
+                  '<span class="font-semibold text-indigo-300">@medicusminds_official</span>' +
+                '</div>' +
+              '</div>' +
+
+              '<textarea id="share-summary-box" class="sr-only" readonly>' + esc(summary) + '</textarea>' +
+              '<button type="button" data-action="copy-share" class="mt-5 w-full py-3.5 px-5 rounded-2xl bg-slate-900 dark:bg-indigo-600 text-white font-semibold text-sm hover:opacity-90">Copy Summary</button>' +
+            '</div>'
+          );
+        },
+
+        // CONTACT ADMIN / SUPPORT VIEW
+        contactAdmin: function () {
+          var prof = App.data.profile;
+          return (
+            '<div class="max-w-lg mx-auto">' +
+              this.backBar("Back") +
+              '<div class="mb-6">' +
+                '<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Facing Issue? Contact Admin</h1>' +
+                '<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Submit your question or bug report directly to the MedicusMinds Admin Inbox.</p>' +
+              '</div>' +
+              '<form data-form="support-issue" class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-6 space-y-4">' +
+                '<div><label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Your Name</label><input id="support-name" type="text" maxlength="60" required value="' + esc(prof.name === "Guest Aspirant" ? "" : prof.name) + '" placeholder="Enter your name" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                '<div><label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Phone / Contact (Optional)</label><input id="support-phone" type="tel" maxlength="20" value="' + esc(prof.phone || "") + '" placeholder="10-digit number" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                '<div><label class="block text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">Issue / Message</label><textarea id="support-msg" rows="4" maxlength="600" required placeholder="Describe your issue or feedback..." class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700"></textarea></div>' +
+                '<button type="submit" class="w-full py-3 rounded-xl text-sm font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">Send to Admin Inbox</button>' +
+              '</form>' +
+            '</div>'
+          );
+        },
+
+        // PROFILE, BACKUP & RESTORE VIEW
+        profileBackup: function () {
+          var prof = App.data.profile;
+          var ec = App.getExamCountdownStats();
+
+          return (
+            '<div class="max-w-lg mx-auto space-y-6">' +
+              this.backBar("Back") +
+              '<div>' +
+                '<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Student Profile & Backup</h1>' +
+                '<p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Manage your aspirant details, exam dates, and JSON progress backups.</p>' +
+              '</div>' +
+
+              '<form data-form="save-profile" class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-6 space-y-4">' +
+                '<h2 class="text-sm font-bold">Student Details</h2>' +
+                '<div><label class="block text-xs font-semibold text-slate-500 mb-1">Student Name</label><input id="profile-name" type="text" maxlength="60" required value="' + esc(prof.name) + '" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' +
+                  '<div><label class="block text-xs font-semibold text-slate-500 mb-1">Target NEET Year</label><input id="profile-year" type="text" maxlength="10" required value="' + esc(prof.targetYear || "2027") + '" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                  '<div><label class="block text-xs font-semibold text-slate-500 mb-1">Phone Number</label><input id="profile-phone" type="tel" maxlength="20" value="' + esc(prof.phone || "") + '" placeholder="10-digit number" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                '</div>' +
+                '<button type="submit" class="w-full py-2.5 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">Save Profile</button>' +
+              '</form>' +
+
+              '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 flex items-center justify-between gap-4">' +
+                '<div>' +
+                  '<div class="text-[11px] font-bold uppercase text-indigo-500">' + esc(ec.label) + '</div>' +
+                  '<div class="text-sm font-bold mt-0.5">' + (ec.daysLeft > 0 ? ec.daysLeft + " Days Left" : "Exam Day") + ' <span class="text-xs font-normal text-slate-400">(' + esc(ec.formattedExam) + ')</span></div>' +
+                '</div>' +
+                '<button type="button" data-action="open-modal" data-modal="modal-exam-countdown" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white">Edit Dates</button>' +
+              '</div>' +
+
+              '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 space-y-3">' +
+                '<div>' +
+                  '<h2 class="text-sm font-bold">JSON Backup & Restore</h2>' +
+                  '<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Download a complete backup file or restore your progress anytime.</p>' +
+                '</div>' +
+                '<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">' +
+                  '<button type="button" data-action="export-backup" class="py-2.5 px-4 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">⬇ Download JSON Backup</button>' +
+                  '<label class="py-2.5 px-4 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-white/10 text-center cursor-pointer hover:border-indigo-500">' +
+                    '⬆ Restore JSON Backup' +
+                    '<input id="input-restore-json" type="file" accept=".json,application/json" class="hidden" />' +
+                  '</label>' +
+                '</div>' +
+              '</div>' +
+            '</div>'
+          );
+        },
+
+        // SECRET OWNER ADMIN CONSOLE
+        adminConsole: function () {
+          var cfg = App.data.adminConfig;
+          var tab = App.ui.adminTab;
+          var tickets = App.data.supportTickets || [];
+          var unresolved = tickets.filter(function (t) { return !t.resolved; }).length;
+          var feats = cfg.features;
+          var overall = App.computeOverallMetrics();
+          var prof = App.data.profile;
+
+          var bodyHtml = "";
+          if (tab === "notice") {
+            bodyHtml = (
+              '<form data-form="admin-notice-ad" class="grid grid-cols-1 lg:grid-cols-2 gap-6">' +
+                '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-6 space-y-4">' +
+                  '<div class="flex items-center justify-between">' +
+                    '<h3 class="text-sm font-bold">Notice Banner</h3>' +
+                    '<label class="inline-flex items-center gap-2 text-xs font-semibold cursor-pointer"><input id="admin-notice-active" type="checkbox" ' + (cfg.notice.active ? "checked" : "") + ' /> Active</label>' +
+                  '</div>' +
+                  '<textarea id="admin-notice-text" rows="3" maxlength="250" class="w-full px-3.5 py-2.5 rounded-xl text-sm bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700">' + esc(cfg.notice.text) + '</textarea>' +
+                '</div>' +
+
+                '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-6 space-y-3">' +
+                  '<div class="flex items-center justify-between">' +
+                    '<h3 class="text-sm font-bold">Ad / Sponsor Banner Slot</h3>' +
+                    '<label class="inline-flex items-center gap-2 text-xs font-semibold cursor-pointer"><input id="admin-ad-active" type="checkbox" ' + (cfg.sponsor.active ? "checked" : "") + ' /> Active</label>' +
+                  '</div>' +
+                  '<input id="admin-ad-title" type="text" maxlength="120" value="' + esc(cfg.sponsor.title) + '" placeholder="Banner Title" class="w-full px-3.5 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" />' +
+                  '<input id="admin-ad-sub" type="text" maxlength="200" value="' + esc(cfg.sponsor.subtitle) + '" placeholder="Subtitle" class="w-full px-3.5 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" />' +
+                  '<div class="grid grid-cols-2 gap-2">' +
+                    '<input id="admin-ad-cta" type="text" maxlength="35" value="' + esc(cfg.sponsor.ctaText) + '" placeholder="CTA Text" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" />' +
+                    '<input id="admin-ad-url" type="url" value="' + esc(cfg.sponsor.linkUrl) + '" placeholder="https://..." class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" />' +
+                  '</div>' +
+                  '<div class="pt-2 flex justify-end"><button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white">Save Notice & Ad</button></div>' +
+                '</div>' +
+              '</form>'
+            );
+          } else if (tab === "students") {
+            var roster = [
+              { name: prof.name + " (Current Device)", year: prof.targetYear, pct: overall.syllabusPct, solved: overall.totalSolved, backlog: overall.backlogList.length },
+              { name: "Aarav Sharma", year: "2027", pct: 74, solved: 3120, backlog: 1 },
+              { name: "Ananya Verma", year: "2027", pct: 68, solved: 2790, backlog: 2 }
+            ];
+            bodyHtml = (
+              '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-5 overflow-x-auto">' +
+                '<table class="w-full text-left border-collapse text-xs">' +
+                  '<thead><tr class="border-b border-slate-200 dark:border-white/10 text-slate-400 uppercase text-[10px]"><th class="py-2.5 px-2">Rank</th><th class="py-2.5 px-2">Student</th><th class="py-2.5 px-2">Target</th><th class="py-2.5 px-2">Progress</th><th class="py-2.5 px-2">Qs Solved</th><th class="py-2.5 px-2">Auto-Backlog</th></tr></thead>' +
+                  '<tbody class="divide-y divide-slate-100 dark:divide-white/10">' +
+                    roster.map(function (r, i) {
+                      return '<tr><td class="py-3 px-2 font-bold text-indigo-500">#' + (i + 1) + '</td><td class="py-3 px-2 font-semibold">' + esc(r.name) + '</td><td class="py-3 px-2">' + esc(r.year) + '</td><td class="py-3 px-2 font-bold">' + r.pct + '%</td><td class="py-3 px-2 text-emerald-500 font-bold">' + r.solved + '</td><td class="py-3 px-2 text-rose-500 font-semibold">' + r.backlog + ' Ch</td></tr>';
+                    }).join("") +
+                  '</tbody>' +
+                '</table>' +
+              '</div>'
+            );
+          } else if (tab === "inbox") {
+            bodyHtml = (
+              '<div class="space-y-3">' +
+                (tickets.length === 0
+                  ? '<div class="bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/10 rounded-2xl p-8 text-center text-xs text-slate-500">Support inbox is empty.</div>'
+                  : tickets.map(function (t) {
+                      return (
+                        '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-start justify-between gap-3">' +
+                          '<div>' +
+                            '<div class="text-xs font-bold">' + esc(t.name) + ' <span class="font-normal text-slate-400">(' + esc(t.phone || "No phone") + ' • ' + esc(t.date) + ')</span></div>' +
+                            '<p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1">' + esc(t.message) + '</p>' +
+                          '</div>' +
+                          '<div class="flex items-center gap-2 shrink-0">' +
+                            (!t.resolved ? '<button type="button" data-action="resolve-ticket" data-ticket="' + esc(t.id) + '" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 text-white">Resolve</button>' : '<span class="text-xs font-bold text-emerald-500">Resolved ✓</span>') +
+                            '<button type="button" data-action="delete-ticket" data-ticket="' + esc(t.id) + '" class="px-3 py-1.5 rounded-lg text-xs font-semibold border border-slate-200 dark:border-white/10 text-rose-500">Delete</button>' +
+                          '</div>' +
+                        '</div>'
+                      );
+                    }).join("")) +
+              '</div>'
+            );
+          } else if (tab === "features") {
+            var switches = [
+              { key: "examCountdown", title: "Exam Countdown Card (Default ON)", desc: "Prep Start Date & Target Exam Date countdown on Home." },
+              { key: "backlogTracker", title: "Auto-Backlog Tracker (Default ON)", desc: "Auto-tracks chapters with Class Done & incomplete exercises." },
+              { key: "subjectCharts", title: "Subject Pie Charts (Default ON)", desc: "Donut charts for Physics, Chemistry, and Biology." },
+              { key: "habitMaker", title: "Habit & Streak Maker (Default ON)", desc: "Daily Build/Quit habits and monthly check-in calendar." },
+              { key: "mockTests", title: "Mock Test Score Log (Default ON)", desc: "/720 mock test entries and score trend chart." },
+              { key: "shareCard", title: "Share Progress Card (Default ON)", desc: "Branded @medicusminds_official summary card." },
+              { key: "contactAdmin", title: "Facing Issue? Contact Admin (Default ON)", desc: "Student support submission form." },
+              { key: "dailyTarget", title: "Daily Question Target Bar (Default OFF)", desc: "Shows daily MCQ goal bar on Home when turned ON." },
+              { key: "chapterNotes", title: "Chapter Notes & Formula Box (Default OFF)", desc: "Adds formula/mistake notes textarea inside Chapter Workspace." },
+              { key: "focusTimer", title: "Chapter Study Focus Timer (Default OFF)", desc: "Adds 25m/50m Pomodoro timer inside Chapter Workspace." },
+              { key: "confidenceRating", title: "Chapter Confidence Rating (Default OFF)", desc: "Adds Low/Medium/High confidence buttons inside Chapter Workspace." }
+            ];
+            bodyHtml = (
+              '<div class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-6 divide-y divide-slate-100 dark:divide-white/10">' +
+                switches.map(function (sw) {
+                  var isOn = !!feats[sw.key];
+                  return (
+                    '<div class="py-3.5 first:pt-0 last:pb-0 flex items-center justify-between gap-4">' +
+                      '<div>' +
+                        '<div class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white">' + esc(sw.title) + '</div>' +
+                        '<div class="text-[11px] text-slate-400 mt-0.5">' + esc(sw.desc) + '</div>' +
+                      '</div>' +
+                      '<button type="button" data-action="toggle-feature" data-feature="' + sw.key + '" class="px-4 py-1.5 rounded-full text-xs font-bold transition-colors shrink-0 ' +
+                        (isOn ? "bg-emerald-600 text-white" : "bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400") + '">' +
+                        (isOn ? "ON" : "OFF") +
+                      '</button>' +
+                    '</div>'
+                  );
+                }).join("") +
+              '</div>'
+            );
+          } else {
+            var sl = cfg.socialLinks || {};
+            var maskedPhone = cfg.ownerPhoneMasked || "99******99";
+            bodyHtml = (
+              '<div class="space-y-6">' +
+                '<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">' +
+                  '<form data-form="admin-owner-phone" class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-6 space-y-3">' +
+                    '<div class="flex items-center justify-between">' +
+                      '<h3 class="text-sm font-bold">Owner Phone Number (Admin Unlock)</h3>' +
+                      '<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-50 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300">Active: ' + esc(maskedPhone) + '</span>' +
+                    '</div>' +
+                    '<p class="text-[11px] text-slate-400">Stored as a salted hash. Entering this 10-digit number in Student Profile or the 5-tap Admin prompt unlocks this Console.</p>' +
+                    '<input id="admin-owner-phone" type="tel" inputmode="numeric" maxlength="13" required placeholder="Enter new 10-digit Owner Phone" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" />' +
+                    '<button type="submit" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-900 dark:bg-indigo-600 text-white hover:opacity-90">Save Owner Phone</button>' +
+                  '</form>' +
+
+                  '<form data-form="admin-update-pin" class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-6 space-y-3">' +
+                    '<div class="flex items-center justify-between">' +
+                      '<h3 class="text-sm font-bold">Admin Security PIN (4–6 Digits)</h3>' +
+                      '<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-50 text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300">Hashed + 5-Try Lock</span>' +
+                    '</div>' +
+                    '<p class="text-[11px] text-slate-400">Stored as a salted cryptographic hash. 5 failed attempts trigger a 5-minute automatic lockout.</p>' +
+                    '<input id="admin-new-pin" type="password" inputmode="numeric" maxlength="6" required placeholder="Enter new 4–6 digit PIN" class="w-full px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" />' +
+                    '<button type="submit" class="px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white hover:bg-indigo-700">Update PIN</button>' +
+                  '</form>' +
+                '</div>' +
+
+                '<form data-form="admin-links-cloud" class="bg-white dark:bg-[#111827] glass-card border border-slate-200 dark:border-white/10 rounded-2xl p-6 space-y-4">' +
+                  '<h3 class="text-sm font-bold">Social Links, GA4 & Phase 2 CloudBridge</h3>' +
+                  '<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">' +
+                    '<div><label class="block text-xs font-semibold text-slate-500 mb-1">YouTube URL</label><input id="admin-yt-url" type="url" value="' + esc(sl.youtube || "") + '" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                    '<div><label class="block text-xs font-semibold text-slate-500 mb-1">Telegram URL</label><input id="admin-tg-url" type="url" value="' + esc(sl.telegram || "") + '" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                    '<div><label class="block text-xs font-semibold text-slate-500 mb-1">WhatsApp URL</label><input id="admin-wa-url" type="url" value="' + esc(sl.whatsapp || "") + '" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                  '</div>' +
+                  '<div class="grid grid-cols-1 sm:grid-cols-3 gap-3">' +
+                    '<div><label class="block text-xs font-semibold text-slate-500 mb-1">GA4 Measurement ID</label><input id="admin-ga4-id" type="text" value="' + esc(cfg.ga4Id || "") + '" placeholder="G-XXXXXXXXXX" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                    '<div><label class="block text-xs font-semibold text-slate-500 mb-1">CloudBridge Endpoint</label><input id="admin-cloud-endpoint" type="url" value="' + esc(cfg.cloudEndpoint || "") + '" placeholder="https://api..." class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                    '<div><label class="block text-xs font-semibold text-slate-500 mb-1">CloudBridge API Key</label><input id="admin-cloud-key" type="password" value="' + esc(cfg.cloudKey || "") + '" placeholder="Optional key" class="w-full px-3 py-2 rounded-xl text-xs bg-slate-50 dark:bg-slate-800/90 border border-slate-200 dark:border-slate-700" /></div>' +
+                  '</div>' +
+                  '<button type="submit" class="px-5 py-2.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white hover:bg-indigo-700">Save Links & Cloud Settings</button>' +
+                '</form>' +
+              '</div>'
+            );
+          }
+
+          var tabs = [
+            { id: "notice", label: "Notice & Ad Slot" },
+            { id: "students", label: "Student Ranks" },
+            { id: "inbox", label: "Support Inbox (" + unresolved + ")" },
+            { id: "features", label: "Feature Controls" },
+            { id: "settings", label: "Links, Cloud & Security" }
+          ];
+
+          return (
+            '<div>' +
+              this.backBar("Back") +
+              '<div class="mb-6">' +
+                '<span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-indigo-50 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-300 mb-1">Owner Console</span>' +
+                '<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">MedicusMinds Admin Panel</h1>' +
+              '</div>' +
+              '<div class="flex items-center gap-2 overflow-x-auto pb-2 mb-6">' +
+                tabs.map(function (t) {
+                  return '<button type="button" data-action="admin-tab" data-tab="' + t.id + '" class="px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap border transition-all ' +
+                    (tab === t.id
+                      ? "bg-slate-900 text-white border-slate-900 dark:bg-indigo-600 dark:text-white dark:border-indigo-600"
+                      : "bg-white dark:bg-[#111827] text-slate-600 dark:text-slate-300 border-slate-200 dark:border-white/10") + '">' +
+                    t.label +
+                  '</button>';
+                }).join("") +
+              '</div>' +
+              bodyHtml +
+            '</div>'
+          );
+        }
+      };
+
+      /* =====================================================================
+       * 13. BOOTSTRAP
+       * ===================================================================== */
+      window.addEventListener("DOMContentLoaded", function () {
+        App.init();
+      });
+    })();
+  </script>
+</body>
+</html>
